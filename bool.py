@@ -15,9 +15,32 @@ class Tru():
     def __repr__(self):
         return "Tru"
 
-    # Manjka nnf() in cnf()
+    def nnf(self, negiramo=False):
+        if negiramo:
+            return Fls()
+        else:
+            return self
+        
+    def cnf(self):
+        return Cnf([])
+        
 
-# Manjka razred Fls
+class Fls():
+    def __init__(self):
+        pass
+
+    def __repr__(self):
+        return "Fls"
+
+    def nnf(self, negiramo=False):
+        if negiramo:
+            return Tru()
+        else:
+            return self
+
+    def cnf(self):
+        return Cnf([Stavek([])])
+
 
 class Atom():
     def __init__(self, x):
