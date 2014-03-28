@@ -23,7 +23,7 @@ class Lit():
         self.ime = x
 
     def __repr__(self):
-        return self.ime
+        return str(self.ime)
 
 class Til():
     """Negiran atom."""
@@ -32,6 +32,6 @@ class Til():
         self.ime = x
 
     def __repr__(self):
-        return "~"+self.ime
+        return "~"+str(self.ime)
 
 

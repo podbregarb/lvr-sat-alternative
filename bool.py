@@ -47,7 +47,7 @@ class Atom():
         self.ime = x
 
     def __repr__(self):
-        return self.ime
+        return str(self.ime)
 
     def nnf(self, negiramo=False):
         """Vrni nnf obliko objekta self."""
