@@ -2,10 +2,22 @@
 
 # Osnovne podatkovne strukture za logicne formule
 
-# Razredi za predstavitev formul.
+from cnf import *
 
+# Razredi za predstavitev formul.
 # POZOR: nikoli ne programiramo tako, da spremenimo objekte.
 #        Vedno delamo nove.
+
+class Tru():
+    def __init__(self):
+        pass
+
+    def __repr__(self):
+        return "Tru"
+
+    # Manjka nnf() in cnf()
+
+# Manjka razred Fls
 
 class Atom():
     def __init__(self, x):
@@ -20,6 +32,10 @@ class Atom():
             return Not(self)
         else:
             return self
+
+    def cnf(self):
+        """Vrni CNF obliko objekta self."""
+        return Cnf([Stavek([Lit(self.ime)])])
 
 class Not():
     def __init__(self, p):
@@ -36,31 +52,56 @@ class Not():
         # else:
         #     return self.formula.nnf(negiramo = true)
 
+    def cnf(self):
+        if isinstance(self.formula, Atom):
+            return Cnf([Stavek([Til(self.formula.ime)])])
+        else:
+            return self.nnf().cnf()
         
 class And():
     def __init__(self, lst):
-        self.formulas = lst
+        self.formule = lst
 
     def __repr__(self):
-        return "And" + str(self.formulas)
+        return "And" + str(self.formule)
 
     def nnf(self, negiramo=False):
-        lst = [p.nnf(negiramo) for p in self.formulas]
+        lst = [p.nnf(negiramo) for p in self.formule]
         if negiramo:
             return Or(lst)
         else:
             return And(lst)
+
+    def cnf(self):
+        stavki = []
+        for p in self.formule:
+            stavki.extend(p.cnf().stavki)
+        return Cnf(stavki)
+        
 
 class Or():
     def __init__(self, lst):
-        self.formulas = lst
+        self.formule = lst
 
     def __repr__(self):
-        return "Or" + str(self.formulas)
+        return "Or" + str(self.formule)
 
     def nnf(self, negiramo=False):
-        lst = [p.nnf(negiramo) for p in self.formulas]
+        lst = [p.nnf(negiramo) for p in self.formule]
         if negiramo:
             return And(lst)
         else:
             return Or(lst)
+
+    def cnf(self):
+        if len(self.formule) == 0:
+            return Cnf([Stavek([])])
+        elif len(self.formule) == 1:
+            return self.formule[0].cnf()
+        else:
+            # Razbijemo disjunkcijo na dve podformuli in izracunamo CNF
+            stavki = []
+            for s1 in self.formule[0].cnf().stavki:
+                for s2 in Or(self.formule[1:]).cnf().stavki:
+                    stavki.append(Stavek(s1.literali + s2.literali))
+            return Cnf(stavki)
