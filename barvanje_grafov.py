@@ -20,10 +20,9 @@ def barvanje_grafov(V,E,k):
 
     t=[]
     for i in E:
-        t1=[]
         for j in range(1,k+1):
-            t1=And([Atom((i[0],j)),Atom((i[1],j))])
-        t.append(Not(t1))
+            t1=Not(And([Atom((i[0],j)),Atom((i[1],j))]))
+        t.append(t1)
         
     return And(r+s+t)
                 
