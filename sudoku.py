@@ -8,7 +8,7 @@ def sudoku(seznam):
     # banana predstavlja seznam vnaprej poznanih cifer/spremenljivk
     banana=[]
     for i in seznam:
-        banana.append(And([Atom((i)),Tru]))
+        banana.append(Atom((i)))
 
 
 
