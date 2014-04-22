@@ -128,3 +128,5 @@ class Or():
                 for s2 in Or(self.formule[1:]).cnf().stavki:
                     stavki.append(Stavek(s1.literali + s2.literali))
             return Cnf(stavki)
+
+

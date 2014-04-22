@@ -7,14 +7,14 @@ class Cnf():
         self.stavki = lst
 
     def __repr__(self):
-        return "CNF" + str(self.stavki)
+        return "AND" + str(self.stavki)
 
 class Stavek():
     def __init__(self, lst):
         self.literali = lst
 
     def __repr__(self):
-        return "Stavek" + str(self.literali)
+        return "OR" + str(self.literali)
 
 class Lit():
     """Atom."""
