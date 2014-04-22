@@ -12,10 +12,10 @@ def dpll(formula):
     print (neznane_spr)
     # CS je seznam še neobdelanih stavkov
     CS1=formula.stavki
-    CS=CS1
+    CS=list(CS1)
     print(CS1)
     for i in CS1:
-        print(CS1)
+        print(CS)
         if i.literali==[]:
             print ("Ni rešitve.")
             break
@@ -46,7 +46,8 @@ def dpll(formula):
     print(CS)
     return znane_spr
     
-    
+f=And([Or([Atom('a')]),Or([Atom('b'),Atom('c'),Atom('a')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Atom('a')])])
+g=And([Or([Not(Atom('a'))]),Or([Atom('b'),Atom('c'),Atom('a')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Not(Atom('a'))])])
             
             
             
