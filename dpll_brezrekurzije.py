@@ -8,76 +8,58 @@ def dpll(formula):
     # (zunanji je And, notranji so Or stavki)
     formula=formula.cnf()
     string_formula=[]
-    for i in range(0,len(formula.stavki)):
-        string_formula.append([])
-    for i in range(0,len(formula.stavki)):
-        for j in range(0,len(formula.stavki[i].literali)):
-            spr=formula.stavki[i].literali[j]
-            if isinstance(spr,Lit):
-                string_formula[i].append(spr.ime)
-            if isinstance(spr,Til):
-                string_formula[i].append('~'+spr.ime)
+    for f in formula.stavki:
+        #D...slovar
+        D={}
+        if len(f.literali)==0:
+            return 'Ni rešitve.'
+        for spr in f.literali:
+            b=isinstance(spr,Lit)
+            if spr.ime in D and D[spr.ime]!=b:
+                D={}
+                break
+            else:
+                D[spr.ime]=b
+        if len(D)>0:
+            string_formula.append(D)
     # poiščemo vse spremenljivke, ki nastopajo v naši formuli
     spr=[]
     for i in string_formula:
-        for j in i:
-            if len(j)==1 and j not in spr:
+        for j in i.keys():
+            if j not in spr:
                 spr.append(j)
-            if len(j)==2 and j[1] not in spr:
-                spr.append(j[1])
-    znane_spr=list([])
+    znane_spr={}
+    return (string_formula,spr)
     return vstavljanje(string_formula,znane_spr)
             
-def dpll1(string_formula,znane_spr=[]):
-    for i in string_formula[:]:
-        if i==[]:
-            return ['Ni rešitve.','Škoda.']
-        if len(i)==1:
-            # imamo samo eno spremenljivko v stavku, spremenljivka ni negirana
-            if len(i[0])==1:
-                if [i[0],Tru] not in znane_spr:
-                    znane_spr.append([i[0],Tru])
+def dpll1(string_formula,znane_spr={}):
+    s=True
+    while s:
+        s=False
+        for i in string_formula[:]:
+            if i=={}:
+                return ['Ni rešitve.','Škoda.']
+            if len(i)==1:
+                spr,b=i.items()[0]
+                if spr in znane_spr and znane_spr[spr]!=b:
+                    return 'Ni rešitve.'
+                else:
+                    znane_spr[spr]=b
+                
+                # imamo samo eno spremenljivko v stavku
                 for k in string_formula[:]:
-                    for j in k:
-                        if j[0]==i[0] and k in string_formula:
+                    if spr in k:
+                        if k[spr]==b:
                             string_formula.remove(k)
-                        if len(j)>1 and j[1]==i[0]:
-                            k.remove(j)
-                            
-            # imamo samo eno spremenljivko v stavku, spremenljivka je negirana
-            if len(i[0])==2:
-                if [i[0][1],Fls] not in znane_spr:
-                    znane_spr.append([i[0][1],Fls])
-                for k in string_formula[:]:
-                    for j in k:
-                        if len(j)>1 and j[1]==i[0][1]:
-                            string_formula.remove(k)
-                        if j[0]==i[0][1]:
-                            k.remove(j)
-    # tu se pokličemo rekurzivno, če med brisanjem elementov iz seznama
-    # pridelamo seznam dolžine <=2
-    for i in string_formula:
-        if len(i)<=1:
-            [string_formula,znane_spr]=dpll1(string_formula,znane_spr)   
+                        else:
+                            # tu se pokličemo rekurzivno, če med brisanjem elementov iz seznama
+                            # pridelamo seznam dolžine <=2
+                            k.remove(spr)
+                            s=s or len(k)<=1   
     return [string_formula,znane_spr]
         
-def dpll2(string_formula,znane_spr=[]):
-    for i in string_formula:
-        for j in i:
-            if i.count(j)>1:
-                i.remove(j)
-    for i in string_formula:
-        if string_formula.count(i)>1:
-            string_formula.remove(i)
-    for i in string_formula:
-        for j in i:
-            if len(j)==2:
-                for k in i:
-                    if k[0]==j[1]:
-                        string_formula.remove(i)
-                    
-    return [string_formula,znane_spr]
 
+################ do sem je narejeno :)  ####################
 
 def vstavljanje(string_formula,znane_spr=[]):
     while True:
@@ -96,17 +78,17 @@ def vstavljanje(string_formula,znane_spr=[]):
     neznane_spr=[]
     for i in string_formula:
         for j in i:
-            if len(j)==1 and j not in neznane_spr:
+            if j[0]!='~' and j not in neznane_spr:
                 neznane_spr.append(j)
-            if len(j)==2 and j[1] not in neznane_spr:
-                neznane_spr.append(j[1])
+            if j[0]=='~' and j[1:] not in neznane_spr:
+                neznane_spr.append(j[1:])
 ## na tem mestu bi uporabili rekurzivno funkcijo, ki poskusi vse
 ## vrednosti spremenljivk - nam ni še ratalo :P (glej dpll_poskusRekurzije)
-    return [string_formula,neznane_spr]
+    return [string_formula,znane_spr]
         
 
 ##testne funkcije
-f=And([Or([Atom('a')]),Or([Atom('b'),Atom('c'),Atom('a')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Atom('a')])])
+f=And([Or([Atom('ananas')]),Or([Atom('b'),Atom('c'),Atom('ananas')]),Or([Atom('c'),Atom('d'),Not(Atom('ananas'))]),Or([Atom('b'),Atom('c')]),Or([Atom('ananas')])])
 g=And([Or([Not(Atom('a'))]),Or([Atom('b'),Atom('c'),Atom('a')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Not(Atom('a'))])])
 h=And([Or([Atom('a')]),Or([Atom('b'),Atom('c'),Atom('d')]),Or([Atom('c'),Atom('a'),Atom('b')]),Or([Not(Atom('b'))])])
 i=And([Or([Not(Atom('a'))]),Or([Atom('b'),Atom('c'),Atom('c')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Not(Atom('a'))])])
