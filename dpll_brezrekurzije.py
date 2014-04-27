@@ -4,12 +4,12 @@ from cnf import *
 
 
 def dpll(formula):
-    # v prvem delu formulo v CNF obliki pretvorimo v seznam seznamov
-    # (zunanji je And, notranji so Or stavki)
+    # v prvem delu formulo v CNF obliki pretvorimo v seznam slovarjev
+    # (zunanji seznam pomeni And, notranji slovarji so Or stavki)
     formula=formula.cnf()
     string_formula=[]
     for f in formula.stavki:
-        #D...slovar
+        # D...slovar
         D={}
         if len(f.literali)==0:
             return 'Ni rešitve.'
@@ -29,7 +29,8 @@ def dpll(formula):
             if j not in spr:
                 spr.append(j)
     znane_spr={}
-    return (string_formula,spr)
+          
+    return ciste_pojavitve(string_formula,znane_spr)
     return vstavljanje(string_formula,znane_spr)
             
 def dpll1(string_formula,znane_spr={}):
@@ -38,26 +39,54 @@ def dpll1(string_formula,znane_spr={}):
         s=False
         for i in string_formula[:]:
             if i=={}:
-                return ['Ni rešitve.','Škoda.']
+                return ['Ni rešitve.', 'Škoda.']
             if len(i)==1:
-                spr,b=i.items()[0]
-                if spr in znane_spr and znane_spr[spr]!=b:
-                    return 'Ni rešitve.'
+                spremenljivka,b=list(i.items())[0]
+                if spremenljivka in znane_spr and znane_spr[spremenljivka]!=b:
+                    return ['Ni rešitve.', 'Škoda.']
                 else:
-                    znane_spr[spr]=b
+                    znane_spr[spremenljivka]=b
                 
                 # imamo samo eno spremenljivko v stavku
                 for k in string_formula[:]:
-                    if spr in k:
-                        if k[spr]==b:
+                    if spremenljivka in k:
+                        if k[spremenljivka]==b:
                             string_formula.remove(k)
                         else:
                             # tu se pokličemo rekurzivno, če med brisanjem elementov iz seznama
                             # pridelamo seznam dolžine <=2
-                            k.remove(spr)
+                            del k[spremenljivka]
                             s=s or len(k)<=1   
     return [string_formula,znane_spr]
         
+def ciste_pojavitve(string_formula,znane_spr={}):
+    # odstranimo čiste pojavitve spremenljivk v naši formuli
+    s=True
+    while s:
+        s=False
+        for i in string_formula[:]:
+            a,o=True,False
+            for k,l in i.items():
+                a,o=a and l, o or l
+                for j in string_formula[:]:
+                    for m,n in j.items():
+                        if k==m:
+                            a,o=a and n, o or n
+            if a==True and k not in znane_spr:
+                znane_spr[k]=True
+                for i1 in string_formula[:]:
+                    for k1 in i1.keys():
+                        if k==k1:
+                            string_formula.remove(i1)
+                            s=True
+            if o==False and k not in znane_spr:
+                znane_spr[k]=False
+                for i2 in string_formula[:]:
+                    for k2 in i2.keys():
+                        if k==k2:
+                            string_formula.remove(i2)
+                            s=True
+    return [string_formula,znane_spr]
 
 ################ do sem je narejeno :)  ####################
 
@@ -99,12 +128,12 @@ test2=And([Or([Atom('b'),Atom('c')]),Or([Atom('b'),Atom('c')]),Or([Atom('d'),Ato
 test3=And([Or([Atom('a'),Not(Atom('a')),Atom('b')])])
 
 def test():
-    print('f:  ', dpll(f))
-    print('g:  ', dpll(g))
-    print('h:  ', dpll(h))
-    print('i:  ', dpll(i))
-    print('j:  ', dpll(j))
-    print('test0:  ', dpll(test0))
-    print('test1:  ', dpll(test1))
-    print('test2:  ', dpll(test2))
-    print('test3:  ', dpll(test3))
+    print('f:',f, '\n  ', dpll(f)[0], '\n  ',dpll(f)[1])
+    print('g:',g, '\n  ', dpll(g)[0], '\n  ',dpll(g)[1])
+    print('h:',h, '\n  ', dpll(h)[0], '\n  ',dpll(h)[1])
+    print('i:',i, '\n  ', dpll(i)[0], '\n  ',dpll(i)[1])
+    print('j:',j, '\n  ', dpll(j)[0], '\n  ',dpll(j)[1])
+    print('test0:',test0, '\n  ', dpll(test0)[0], '\n  ',dpll(test0)[1])
+    print('test1:',test1, '\n  ', dpll(test1)[0], '\n  ',dpll(test1)[1])
+    print('test2:',test2, '\n  ', dpll(test2)[0], '\n  ',dpll(test2)[1])
+    print('test3:',test3, '\n  ', dpll(test3)[0], '\n  ',dpll(test3)[1])
