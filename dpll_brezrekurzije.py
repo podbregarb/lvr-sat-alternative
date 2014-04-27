@@ -31,7 +31,7 @@ def dpll(formula):
                 spr.append(j)
     znane_spr={}
     return ciste_pojavitve(string_formula,znane_spr)
-    return vstavljanje(string_formula,znane_spr)
+
             
 def dpll1(string_formula,znane_spr={}):
     s=True
@@ -58,10 +58,10 @@ def dpll1(string_formula,znane_spr={}):
                             del k[spremenljivka]
                             s=s or len(k)<=1   
     return [string_formula,znane_spr]
-        
+
+## ne dela čisto prav::
 def ciste_pojavitve(string_formula,znane_spr={}):
     # odstranimo čiste pojavitve spremenljivk v naši formuli
-    print('Formula: ', string_formula)
     s=True
     while s:
         formula=list(string_formula)
@@ -89,8 +89,6 @@ def ciste_pojavitve(string_formula,znane_spr={}):
                         for k2 in i2.keys():
                             if k==k2 and i2 in string_formula:
                                 string_formula.remove(i2)
-                                
-
     return [string_formula,znane_spr]
 
 ################ do sem je narejeno :)  ####################
@@ -121,7 +119,7 @@ def vstavljanje(string_formula,znane_spr=[]):
     return [string_formula,znane_spr]
         
 
-##testne funkcije
+##testne formule
 f=And([Or([Atom('a')]),Or([Atom('b'),Atom('c'),Atom('a')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Atom('a')])])
 g=And([Or([Not(Atom('a'))]),Or([Atom('b'),Atom('c'),Atom('a')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Not(Atom('a'))])])
 h=And([Or([Atom('a')]),Or([Atom('b'),Atom('c'),Atom('d')]),Or([Atom('c'),Atom('a'),Atom('b')]),Or([Not(Atom('b'))])])
