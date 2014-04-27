@@ -63,27 +63,28 @@ def ciste_pojavitve(string_formula,znane_spr={}):
     # odstranimo čiste pojavitve spremenljivk v naši formuli
     s=True
     while s:
+        formula=list(string_formula)
         s=False
-        for i in string_formula[:]:
+        for i in formula:
             a,o=True,False
             for k,l in i.items():
                 a,o=a and l, o or l
-                for j in string_formula[:]:
+                for j in formula:
                     for m,n in j.items():
                         if k==m:
                             a,o=a and n, o or n
                 if a==True and k not in znane_spr:
                     znane_spr[k]=True
-                    for i1 in string_formula[:]:
+                    for i1 in formula:
                         for k1 in i1.keys():
-                            if k==k1:
+                            if k==k1 and i1 in string_formula:
                                 string_formula.remove(i1)
                                 s=True
                 if o==False and k not in znane_spr:
                     znane_spr[k]=False
-                    for i2 in string_formula[:]:
+                    for i2 in formula:
                         for k2 in i2.keys():
-                            if k==k2:
+                            if k==k2 and i in string_formula:
                                 string_formula.remove(i2)
                                 s=True
     return [string_formula,znane_spr]
