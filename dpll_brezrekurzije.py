@@ -72,20 +72,20 @@ def ciste_pojavitve(string_formula,znane_spr={}):
                     for m,n in j.items():
                         if k==m:
                             a,o=a and n, o or n
-            if a==True and k not in znane_spr:
-                znane_spr[k]=True
-                for i1 in string_formula[:]:
-                    for k1 in i1.keys():
-                        if k==k1:
-                            string_formula.remove(i1)
-                            s=True
-            if o==False and k not in znane_spr:
-                znane_spr[k]=False
-                for i2 in string_formula[:]:
-                    for k2 in i2.keys():
-                        if k==k2:
-                            string_formula.remove(i2)
-                            s=True
+                if a==True and k not in znane_spr:
+                    znane_spr[k]=True
+                    for i1 in string_formula[:]:
+                        for k1 in i1.keys():
+                            if k==k1:
+                                string_formula.remove(i1)
+                                s=True
+                if o==False and k not in znane_spr:
+                    znane_spr[k]=False
+                    for i2 in string_formula[:]:
+                        for k2 in i2.keys():
+                            if k==k2:
+                                string_formula.remove(i2)
+                                s=True
     return [string_formula,znane_spr]
 
 ################ do sem je narejeno :)  ####################
@@ -117,7 +117,7 @@ def vstavljanje(string_formula,znane_spr=[]):
         
 
 ##testne funkcije
-f=And([Or([Atom('ananas')]),Or([Atom('b'),Atom('c'),Atom('ananas')]),Or([Atom('c'),Atom('d'),Not(Atom('ananas'))]),Or([Atom('b'),Atom('c')]),Or([Atom('ananas')])])
+f=And([Or([Atom('a')]),Or([Atom('b'),Atom('c'),Atom('a')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Atom('a')])])
 g=And([Or([Not(Atom('a'))]),Or([Atom('b'),Atom('c'),Atom('a')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Not(Atom('a'))])])
 h=And([Or([Atom('a')]),Or([Atom('b'),Atom('c'),Atom('d')]),Or([Atom('c'),Atom('a'),Atom('b')]),Or([Not(Atom('b'))])])
 i=And([Or([Not(Atom('a'))]),Or([Atom('b'),Atom('c'),Atom('c')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Not(Atom('a'))])])
