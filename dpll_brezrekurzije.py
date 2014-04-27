@@ -17,6 +17,7 @@ def dpll(formula):
             b=isinstance(spr,Lit)
             if spr.ime in D and D[spr.ime]!=b:
                 D={}
+                string_formula.append(D)
                 break
             else:
                 D[spr.ime]=b
@@ -29,7 +30,6 @@ def dpll(formula):
             if j not in spr:
                 spr.append(j)
     znane_spr={}
-          
     return ciste_pojavitve(string_formula,znane_spr)
     return vstavljanje(string_formula,znane_spr)
             
@@ -61,6 +61,7 @@ def dpll1(string_formula,znane_spr={}):
         
 def ciste_pojavitve(string_formula,znane_spr={}):
     # odstranimo čiste pojavitve spremenljivk v naši formuli
+    print('Formula: ', string_formula)
     s=True
     while s:
         formula=list(string_formula)
@@ -75,18 +76,21 @@ def ciste_pojavitve(string_formula,znane_spr={}):
                             a,o=a and n, o or n
                 if a==True and k not in znane_spr:
                     znane_spr[k]=True
+                    s=True
                     for i1 in formula:
                         for k1 in i1.keys():
                             if k==k1 and i1 in string_formula:
                                 string_formula.remove(i1)
-                                s=True
+                                
                 if o==False and k not in znane_spr:
                     znane_spr[k]=False
+                    s=True
                     for i2 in formula:
                         for k2 in i2.keys():
-                            if k==k2 and i in string_formula:
+                            if k==k2 and i2 in string_formula:
                                 string_formula.remove(i2)
-                                s=True
+                                
+
     return [string_formula,znane_spr]
 
 ################ do sem je narejeno :)  ####################
