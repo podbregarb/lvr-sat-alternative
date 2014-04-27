@@ -26,13 +26,13 @@ def dpll(formula):
         if len(D)>0:
             string_formula.append(D)
     # poiščemo vse spremenljivke, ki nastopajo v naši formuli
+    [string_formula,znane_spr]=ciste_pojavitve(string_formula,znane_spr={})
     spr=[]
     for i in string_formula:
         for j in i.keys():
             if j not in spr:
                 spr.append(j)
-    znane_spr={}
-    return vse_moznosti(string_formula,znane_spr)
+    return vse_moznosti(string_formula,spr)
 
             
 def dpll1(string_formula,znane_spr={}):
@@ -99,7 +99,7 @@ def ciste_pojavitve(string_formula,znane_spr={}):
 #                  |
 #                  ˇ
 # preverimo vse možnosti za preostale spremenljivke
-def vse_moznosti(string_formula, znane_spr={}):
+def vse_moznosti(string_formula, neznane_spr):
     nastavljene_spr={}
     for i in [d.copy() for d in string_formula]:
         for j,l in i.items():
@@ -111,17 +111,12 @@ def vse_moznosti(string_formula, znane_spr={}):
                             string_formula.remove(i1)
                             string_formula=ciste_pojavitve(string_formula,nastavljene_spr)
                             if string_formula==[]:
-                                return ['Formula je izvedljiva.', 'Super.']       
-            if l==False:
-                nastavljene_spr[j]=False
-                for i2 in [d.copy() for d in string_formula]:
-                    for j2,l2 in i2.items():
-                        if j2==j and l2==l and i2 in string_formula:
-                            del i2[j]
-                            string_formula=ciste_pojavitve(string_formula,nastavljene_spr)
-                            if string_formula==[]:
+                                znane_spr.update(nastavljene_spr)
                                 return ['Formula je izvedljiva.', 'Super.']
-            
+                            else:
+                                nastavljene_spr[j]=False
+                                [string_formula,nastavljene_spr]=vse_moznosti(string_formula, neznane_spr)
+                                           
     return [string_formula,nastavljene_spr]
             
             
