@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from bool import *
 from cnf import *
 
@@ -30,7 +32,7 @@ def dpll(formula):
             if j not in spr:
                 spr.append(j)
     znane_spr={}
-    return ciste_pojavitve(string_formula,znane_spr)
+    return vse_moznosti(string_formula,znane_spr)
 
             
 def dpll1(string_formula,znane_spr={}):
@@ -89,34 +91,47 @@ def ciste_pojavitve(string_formula,znane_spr={}):
                         for k2 in i2.keys():
                             if k==k2 and i2 in string_formula:
                                 string_formula.remove(i2)
-    return [string_formula,znane_spr]
+    return dpll1(string_formula,znane_spr)
 
-################ do sem je narejeno :)  ####################
 
-def vstavljanje(string_formula,znane_spr=[]):
-    while True:
-        [string_formula0,znane_spr0]=dpll1(string_formula,znane_spr)
-        if string_formula0=='Ni rešitve.':
-            return ['Ni rešitve.','Škoda.']
-        if string_formula0=='Formula je izvedljiva.':
-            return ['Formula je izvedljiva.','Super.']
-        else:
-            [string_formula1,znane_spr1]=dpll2(string_formula0,znane_spr0)
-            if string_formula==string_formula1:
-                break
-##  zdaj vemo, da so vsi stavki dolžine >=2.
-##  to je to za ta denar :)
-## iz preostanka formule na novo vzamemo neznane spremenljivke
-    neznane_spr=[]
-    for i in string_formula:
-        for j in i:
-            if j[0]!='~' and j not in neznane_spr:
-                neznane_spr.append(j)
-            if j[0]=='~' and j[1:] not in neznane_spr:
-                neznane_spr.append(j[1:])
-## na tem mestu bi uporabili rekurzivno funkcijo, ki poskusi vse
-## vrednosti spremenljivk - nam ni še ratalo :P (glej dpll_poskusRekurzije)
-    return [string_formula,znane_spr]
+
+### TO ŠE NITI PRIBLIŽNO NE DELA!! ###
+#                  |
+#                  ˇ
+# preverimo vse možnosti za preostale spremenljivke
+def vse_moznosti(string_formula, znane_spr={}):
+    nastavljene_spr={}
+    for i in [d.copy() for d in string_formula]:
+        for j,l in i.items():
+            if l==True:
+                nastavljene_spr[j]=True
+                for i1 in [d.copy() for d in string_formula]:
+                    for j1,l1 in i1.items():
+                        if j1==j and l1==l and i1 in string_formula:
+                            string_formula.remove(i1)
+                            string_formula=ciste_pojavitve(string_formula,nastavljene_spr)
+                            if string_formula==[]:
+                                return ['Formula je izvedljiva.', 'Super.']       
+            if l==False:
+                nastavljene_spr[j]=False
+                for i2 in [d.copy() for d in string_formula]:
+                    for j2,l2 in i2.items():
+                        if j2==j and l2==l and i2 in string_formula:
+                            del i2[j]
+                            string_formula=ciste_pojavitve(string_formula,nastavljene_spr)
+                            if string_formula==[]:
+                                return ['Formula je izvedljiva.', 'Super.']
+            
+    return [string_formula,nastavljene_spr]
+            
+            
+
+
+
+
+
+
+
         
 
 ##testne formule
