@@ -26,12 +26,13 @@ def dpll(formula):
         if len(D)>0:
             string_formula.append(D)
     # poiščemo vse spremenljivke, ki nastopajo v naši formuli
-    [string_formula,znane_spr]=ciste_pojavitve(string_formula,znane_spr={})
+    znane_spr={}
     spr=[]
     for i in string_formula:
         for j in i.keys():
             if j not in spr:
                 spr.append(j)
+    return ciste_pojavitve(string_formula,znane_spr)
     return vse_moznosti(string_formula,spr)
 
             
@@ -61,11 +62,12 @@ def dpll1(string_formula,znane_spr={}):
                             s=s or len(k)<=1   
     return [string_formula,znane_spr]
 
-## ne dela čisto prav::
+## mislim, da dela prav::
 def ciste_pojavitve(string_formula,znane_spr={}):
     # odstranimo čiste pojavitve spremenljivk v naši formuli
     s=True
     while s:
+        [string_formula,znane_spr]=dpll1(string_formula,znane_spr)
         formula=list(string_formula)
         s=False
         for i in formula:
@@ -91,7 +93,7 @@ def ciste_pojavitve(string_formula,znane_spr={}):
                         for k2 in i2.keys():
                             if k==k2 and i2 in string_formula:
                                 string_formula.remove(i2)
-    return dpll1(string_formula,znane_spr)
+    return [string_formula,znane_spr]
 
 
 
@@ -130,7 +132,7 @@ def vse_moznosti(string_formula, neznane_spr):
         
 
 ##testne formule
-f=And([Or([Atom('a')]),Or([Atom('b'),Atom('c'),Atom('a')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Atom('a')])])
+f=And([Or([Atom('ananas')]),Or([Atom('b'),Atom('c'),Atom('ananas')]),Or([Atom('c'),Atom('d'),Not(Atom('ananas'))]),Or([Atom('b'),Atom('c')]),Or([Atom('ananas')])])
 g=And([Or([Not(Atom('a'))]),Or([Atom('b'),Atom('c'),Atom('a')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Not(Atom('a'))])])
 h=And([Or([Atom('a')]),Or([Atom('b'),Atom('c'),Atom('d')]),Or([Atom('c'),Atom('a'),Atom('b')]),Or([Not(Atom('b'))])])
 i=And([Or([Not(Atom('a'))]),Or([Atom('b'),Atom('c'),Atom('c')]),Or([Atom('c'),Atom('d'),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Not(Atom('a'))])])
