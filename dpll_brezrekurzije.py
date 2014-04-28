@@ -67,7 +67,6 @@ def ciste_pojavitve(string_formula,znane_spr={}):
     # odstranimo čiste pojavitve spremenljivk v naši formuli
     s=True
     while s:
-        [string_formula,znane_spr]=dpll1(string_formula,znane_spr)
         formula=list(string_formula)
         s=False
         for i in formula:
@@ -93,7 +92,7 @@ def ciste_pojavitve(string_formula,znane_spr={}):
                         for k2 in i2.keys():
                             if k==k2 and i2 in string_formula:
                                 string_formula.remove(i2)
-    return [string_formula,znane_spr]
+    return dpll1(string_formula,znane_spr)
 
 
 
