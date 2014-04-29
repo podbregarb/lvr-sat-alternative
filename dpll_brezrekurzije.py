@@ -114,10 +114,11 @@ def ciste_pojavitve(string_formula,znane_spr={}):
 
         for j in formula:
             for m in j.keys():
-                if m in pojavitve and pojavitve[m]!=None and j in string_formula:
-                    string_formula.remove(j)
+                if m in pojavitve and pojavitve[m]!=None:
                     znane_spr[m]=pojavitve[m]
-                    s=True
+                    if j in string_formula:
+                        string_formula.remove(j)
+                        s=True
     return [string_formula,znane_spr]   
 
 
