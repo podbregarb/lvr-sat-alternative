@@ -65,14 +65,14 @@ def dpll1(string_formula,znane_spr={}):
     return ciste_pojavitve(string_formula,znane_spr)
 
 ## mislim, da dela prav::
-def ciste_pojavitve(string_formula,znane_spr={}):
+def ciste_pojavitve1(string_formula,znane_spr={}):
     # odstranimo čiste pojavitve spremenljivk v naši formuli
     s=True
     while s:
         formula=list(string_formula)
         s=False
+        a,o=True,False
         for i in formula:
-            a,o=True,False
             for k,l in i.items():
                 a,o=a and l, o or l
                 for j in formula:
@@ -96,6 +96,29 @@ def ciste_pojavitve(string_formula,znane_spr={}):
                                 string_formula.remove(i2)
     return [string_formula,znane_spr]
 
+# manj časovno zahtevna funkcija ciste_pojavitve::
+def ciste_pojavitve(string_formula,znane_spr={}):
+    # odstranimo čiste pojavitve spremenljivk v naši formuli
+    s=True
+    while s:
+        formula=list(string_formula)
+        s=False
+        pojavitve={}
+        for i in formula:
+            for k,l in i.items():
+                if k not in pojavitve:
+                    pojavitve[k]=l
+                else:
+                    if pojavitve[k]!=l:
+                        pojavitve[k]=None
+
+        for j in formula:
+            for m in j.keys():
+                if m in pojavitve and pojavitve[m]!=None and j in string_formula:
+                    string_formula.remove(j)
+                    znane_spr[m]=pojavitve[m]
+                    s=True
+    return [string_formula,znane_spr]   
 
 
 ### TO ŠE NITI PRIBLIŽNO NE DELA!! ###
