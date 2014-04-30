@@ -33,9 +33,7 @@ def dpll(formula):
             if j not in spr:
                 spr.append(j)
     [string_formula,znane_spr]=dpll1(string_formula,znane_spr)
-    #return dpll1(string_formula,znane_spr)
-    #return vstavljanje(string_formula,spr)
-    return vse_moznosti(string_formula,znane_spr)
+    return vstavljanje(string_formula,spr)
 
             
 def dpll1(string_formula,znane_spr={}):
@@ -64,39 +62,7 @@ def dpll1(string_formula,znane_spr={}):
                             s=s or len(k)<=1   
     return ciste_pojavitve(string_formula,znane_spr)
 
-## mislim, da dela prav::
-def ciste_pojavitve1(string_formula,znane_spr={}):
-    # odstranimo čiste pojavitve spremenljivk v naši formuli
-    s=True
-    while s:
-        formula=list(string_formula)
-        s=False
-        a,o=True,False
-        for i in formula:
-            for k,l in i.items():
-                a,o=a and l, o or l
-                for j in formula:
-                    for m,n in j.items():
-                        if k==m:
-                            a,o=a and n, o or n
-                if a==True and k not in znane_spr:
-                    znane_spr[k]=True
-                    s=True
-                    for i1 in formula:
-                        for k1 in i1.keys():
-                            if k==k1 and i1 in string_formula:
-                                string_formula.remove(i1)
-                                
-                if o==False and k not in znane_spr:
-                    znane_spr[k]=False
-                    s=True
-                    for i2 in formula:
-                        for k2 in i2.keys():
-                            if k==k2 and i2 in string_formula:
-                                string_formula.remove(i2)
-    return [string_formula,znane_spr]
 
-# manj časovno zahtevna funkcija ciste_pojavitve::
 def ciste_pojavitve(string_formula,znane_spr={}):
     # odstranimo čiste pojavitve spremenljivk v naši formuli
     s=True
@@ -111,7 +77,6 @@ def ciste_pojavitve(string_formula,znane_spr={}):
                 else:
                     if pojavitve[k]!=l:
                         pojavitve[k]=None
-
         for j in formula:
             for m in j.keys():
                 if m in pojavitve and pojavitve[m]!=None:
@@ -121,41 +86,48 @@ def ciste_pojavitve(string_formula,znane_spr={}):
                         s=True
     return [string_formula,znane_spr]   
 
-
-### TO ŠE NITI PRIBLIŽNO NE DELA!! ###
-#                  |
-#                  ˇ
-# preverimo vse možnosti za preostale spremenljivke
-def vse_moznosti(string_formula, znane_spr):
-    print(string_formula)
-    if string_formula==[]:
-        return ['Formula je izpolnljiva.', znane_spr]
+            
+def vstavljanje(list_formula, znane_spr={}):
+    if list_formula==[]:
+        return ('Formula je izpolnljiva', znane_spr)
     
-    elif string_formula=='Ni rešitve.':
-        return ['Ni rešitve.',1]
+    elif list_formula=='Ni rešitve':
+        return ('Ni rešitve',3)
 
-    else:            
-        nastavljene_spr={}
-        for i in [d.copy() for d in string_formula]:
-            print(i)
-            for j,l in i.items():
-                if l==True:
-                    nastavljene_spr[j]=True
-                    for i1 in [d.copy() for d in string_formula]:
-                        for j1,l1 in i1.items():
-                            if j1==j and l1==l and i1 in string_formula:
-                                string_formula.remove(i1)
-                                string_formula=dpll1(string_formula,nastavljene_spr)
-                                if string_formula==[]:
-                                    znane_spr.update(nastavljene_spr)
-                                    return ['Formula je izvedljiva.', znane_spr]
-                                else:
-                                    nastavljene_spr[j]=False
-                                    [string_formula,nastavljene_spr]=vse_moznosti(string_formula, neznane_spr)
-                                           
-    return [string_formula,znane_spr]
-            
-            
+    else:
+        flag=False
+        for i in list_formula:
+            for j in i:
+                if j not in znane_spr:
+                    l=j
+                    flag=True
+                    break
+                
+        list_formula1=list_formula.copy()
+        znane_spr1=znane_spr.copy()
+               
+        if flag:
+            znane_spr1[l]=True
+            for k in list_formula1[:]:
+                if l in k:                        
+                    if k[l]==True:
+                        list_formula1.remove(k)                           
+                    else:
+                        del k[l]
+            (list_formula1, znane_spr1)=dpll1(list_formula1, znane_spr1)            
+            (list_formula1, znane_spr1)=vstavljanje(list_formula1, znane_spr1)
+            if list_formula1=='Ni rešitve.':
+                znane_spr[l]=False
+                for k in list_formula[:]:
+                    if l in k:                        
+                        if k[l]==False:
+                            list_formula.remove(k)                           
+                        else:
+                            del k[l]
+                        (list_formula, znane_spr)=dpll1(list_formula, znane_spr)
+                        return vstavljanje(list_formula, znane_spr)
+            else:
+                return (list_formula1, znane_spr1)  
         
 
 ##testne formule
