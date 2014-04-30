@@ -127,7 +127,7 @@ def vstavljanje(list_formula, znane_spr={}):
                         (list_formula, znane_spr)=dpll1(list_formula, znane_spr)
                         return vstavljanje(list_formula, znane_spr)
             else:
-                return (list_formula1, znane_spr1)  
+                return (list_formula1, znane_spr1)
         
 
 ##testne formule
