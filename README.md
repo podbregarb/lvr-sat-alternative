@@ -14,14 +14,14 @@ Imamo še program *dpll.py*.
 
 * Implementacija
 
-	V programu *bool.py* implementiramo razrede za predstavitev formul. Hkrati podamo pravila za pretvorbo v nnf in cnf obliko.
+V programu *bool.py* implementiramo razrede za predstavitev formul. Hkrati podamo pravila za pretvorbo v nnf in cnf obliko.
 
-	V programu *cnf.py* podamo pravila za izpis formule v cnf obliki.
+V programu *cnf.py* podamo pravila za izpis formule v cnf obliki.
 
-	Program *primeri.py* izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
+Program *primeri.py* izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
 
 
-* Prevedbe problemov na SAT - primeri
+* ** Prevedbe problemov na SAT - primeri**
 
 V programu *barvanje_grafov.py* je sprogramirana prevedba problema barvanja vozlišè grafa s k barvami v SAT obliko.
 
