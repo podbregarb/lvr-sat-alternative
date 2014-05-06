@@ -19,7 +19,9 @@ Imamo še program *dpll.py*.
 
 * **Prevedbe problemov na SAT - primeri**
 1. V programu *barvanje_grafov.py* je sprogramirana prevedba problema barvanja vozlišè grafa s k barvami v SAT obliko.
-2. V programu *sudoku.py*
+2. V programu *sudoku.py* je sprogramirana prevedba 9x9 sudokuja, ki pa je dlpp ne reši, ker je formula predolga (že samo printanje formule primera na koncu je èasovno zahtevno).
+
+
 
 
 
