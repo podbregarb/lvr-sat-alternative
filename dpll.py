@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 from bool import *
 from cnf import *
 import copy
@@ -29,8 +31,6 @@ def dpll(formula):
 
             
 def dpll1(list_formula, znane_spr={}):
-    # odstranimo stavke dolžine 0 in 1, nastavimo ustrezne spremenljivke, 
-    # odstranimo literale oz. stavke, v katerih nastopajo nastavljene spremenljivke
     s=True
     while s:
         s=False
@@ -58,8 +58,6 @@ def dpll1(list_formula, znane_spr={}):
                             s=s or len(k)<=1   
     return ciste_pojavitve(list_formula, znane_spr)
 
-
-
 def ciste_pojavitve(string_formula,znane_spr={}):
     # odstranimo čiste pojavitve spremenljivk v naši formuli
     s=True
@@ -84,9 +82,7 @@ def ciste_pojavitve(string_formula,znane_spr={}):
     return (string_formula,znane_spr) 
 
 
-
 def vstavljanje(list_formula, znane_spr={}):
-    # preizkušamo možnosti za spremenljivke, ki so nam ostale
     if list_formula==[]:
         return ('Formula je izpolnljiva', znane_spr)
     
@@ -94,30 +90,41 @@ def vstavljanje(list_formula, znane_spr={}):
         return ('Ni rešitve',3)
 
     else:
-        l = list_formula[0].keys()[0] 
-        list_formula1=list_formula.copy()        
-        znane_spr1[l]=True
-        for k in list_formula1[:]:
-            if l in k:                        
-                if k[l]==True:
-                    list_formula1.remove(k)                           
-                else:
-                    del k[l]
-        (list_formula1, znane_spr1)=dpll1(list_formula1, znane_spr)            
-        (list_formula1, znane_spr1)=vstavljanje(list_formula1, znane_spr1)
-        if list_formula1=='Ni rešitve.':
-            znane_spr[l]=False
-            for k in list_formula[:]:
+        flag=False
+        for i in list_formula:
+            for j in i:
+                if j not in znane_spr:
+                    l=j
+                    flag=True
+                    break
+                
+        list_formula1=list_formula.copy()
+        znane_spr1=znane_spr.copy()
+               
+        if flag:
+            znane_spr1[l]=True
+            for k in list_formula1[:]:
                 if l in k:                        
-                    if k[l]==False:
-                        list_formula.remove(k)                           
+                    if k[l]==True:
+                        list_formula1.remove(k)                           
                     else:
                         del k[l]
-                    (list_formula, znane_spr)=dpll1(list_formula, znane_spr)
-                    return vstavljanje(list_formula, znane_spr)
-        else:
-            return (list_formula1, znane_spr1)                    
+            (list_formula1, znane_spr1)=dpll1(list_formula1, znane_spr1)            
+            (list_formula1, znane_spr1)=vstavljanje(list_formula1, znane_spr1)
+            if list_formula1=='Ni rešitve.':
+                znane_spr[l]=False
+                for k in list_formula[:]:
+                    if l in k:                        
+                        if k[l]==False:
+                            list_formula.remove(k)                           
+                        else:
+                            del k[l]
+                        (list_formula, znane_spr)=dpll1(list_formula, znane_spr)
+                        return vstavljanje(list_formula, znane_spr)
+            else:
+                return (list_formula1, znane_spr1)                    
              
+    
 
     
 ##testne funkcije
@@ -131,8 +138,6 @@ test1=And([Or([Not(Atom('a')),Not(Atom('b')),Atom('c')]),Or([Not(Atom('a')),Atom
 test2=And([Or([Atom('b'),Atom('c')]),Or([Atom('b'),Atom('c')]),Or([Atom('d'),Atom('e')])])
 test3=And([Or([Atom('a'),Not(Atom('a')),Atom('b')])])
 test4=And([Or([Atom('a')]),Or([Atom('b'),Not(Atom('c')),Atom('a')]),Or([Not(Atom('c')),Not(Atom('d')),Not(Atom('a'))]),Or([Atom('b'),Atom('c')]),Or([Atom('a')])])
-
-
 
 def test():
     print('f:  ', dpll(f))

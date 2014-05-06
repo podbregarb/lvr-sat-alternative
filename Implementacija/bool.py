@@ -4,10 +4,11 @@
 
 from cnf import *
 
-# Razredi za predstavitev formul.
-# POZOR: nikoli ne programiramo tako, da spremenimo objekte.
-#        Vedno delamo nove.
+# Razredi za predstavitev formul:
+# za vsak razred, ki ga definiramo povemo kako ga predstavimo in kako ga
+# pretvorimo v nnf in cnf obliko
 
+# definiramo razred Tru
 class Tru():
     def __init__(self):
         pass
@@ -24,7 +25,7 @@ class Tru():
     def cnf(self):
         return Cnf([])
         
-
+# definiramo razred Fls
 class Fls():
     def __init__(self):
         pass
@@ -41,7 +42,7 @@ class Fls():
     def cnf(self):
         return Cnf([Stavek([])])
 
-
+# definiramo razred Atom
 class Atom():
     def __init__(self, x):
         self.ime = x
@@ -60,6 +61,7 @@ class Atom():
         """Vrni CNF obliko objekta self."""
         return Cnf([Stavek([Lit(self.ime)])])
 
+# definiramo razred Not
 class Not():
     def __init__(self, p):
         self.formula = p
@@ -69,18 +71,14 @@ class Not():
 
     def nnf(self, negiramo=False):
         return self.formula.nnf(negiramo = not negiramo)
-        # Ekvivalentno, a grdo, profiji ne delajo tako:
-        # if negiramo:
-        #     return self.formula.nnf(negiramo = false)
-        # else:
-        #     return self.formula.nnf(negiramo = true)
 
     def cnf(self):
         if isinstance(self.formula, Atom):
             return Cnf([Stavek([Til(self.formula.ime)])])
         else:
             return self.nnf().cnf()
-        
+
+# definiramo razred And        
 class And():
     def __init__(self, lst):
         self.formule = lst
@@ -101,7 +99,7 @@ class And():
             stavki.extend(p.cnf().stavki)
         return Cnf(stavki)
         
-
+# definiramo razred Or
 class Or():
     def __init__(self, lst):
         self.formule = lst

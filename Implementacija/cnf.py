@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-# Formule v obliki CNF
+# Izpis formul v obliki CNF
 
 class Cnf():
     def __init__(self, lst):
