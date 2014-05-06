@@ -20,6 +20,7 @@ V programu *cnf.py* podamo pravila za izpis formule v cnf obliki.
 
 Program *primeri.py* izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
 
+
 * **Prevedbe problemov na SAT - primeri**
 
 V programu *barvanje_grafov.py* je sprogramirana prevedba problema barvanja vozlišè grafa s k barvami v SAT obliko.
