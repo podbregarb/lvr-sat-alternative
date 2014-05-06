@@ -1,4 +1,27 @@
-lvr-sat-alternative
-===================
+<h1>  SAT solver in primeri <\h1>
 
-Helping some students get up to speed with their SAT solver
+<h2>  Vsebina  <\h2>
+
+V mapi **Implementacija** so programi *bool.py*, *cnf.py* in *primeri.py*. 
+
+V mapi **Prevedbe problemov na SAT - primeri** sta programa *barvanje_grafov.py* in *sudoku.py*.
+
+Imamo še program *dpll.py*.
+
+
+
+<h2>  Opis algoritmov in datotek <\h2>
+
+* **Implementacija**
+1. V programu *bool.py* implementiramo razrede za predstavitev formul. Hkrati podamo pravila za pretvorbo v nnf in cnf obliko.
+2. V programu *cnf.py* podamo pravila za izpis formule v cnf obliki.
+3. Program *primeri.py* izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
+
+
+
+
+
+<h2> Uporaba  <\h2>
+
+
+
