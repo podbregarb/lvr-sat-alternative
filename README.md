@@ -1,6 +1,6 @@
-<h1>  SAT solver in primeri
+#  SAT solver in primeri
 
-<h2>  Vsebina 
+##  Vsebina 
 
 V mapi **Implementacija** so programi *bool.py*, *cnf.py* in *primeri.py*. 
 
@@ -10,9 +10,9 @@ Imamo še program *dpll.py*.
 
 
 
-<h2>  Opis algoritmov in datotek 
+##  Opis algoritmov in datotek 
 
-* Implementacija
+### Implementacija
 
 V programu *bool.py* implementiramo razrede za predstavitev formul. Hkrati podamo pravila za pretvorbo v nnf in cnf obliko.
 
@@ -21,7 +21,7 @@ V programu *cnf.py* podamo pravila za izpis formule v cnf obliki.
 Program *primeri.py* izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
 
 
-* ** Prevedbe problemov na SAT - primeri**
+### Prevedbe problemov na SAT - primeri
 
 V programu *barvanje_grafov.py* je sprogramirana prevedba problema barvanja vozlišè grafa s k barvami v SAT obliko.
 
@@ -31,7 +31,7 @@ V programu *sudoku.py* je sprogramirana prevedba 9x9 sudokuja, ki pa je dlpp ne 
 
 
 
-<h2> Uporaba 
+## Uporaba 
 
 
 
