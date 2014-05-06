@@ -6,7 +6,7 @@ V mapi **Implementacija** so programi *bool.py*, *cnf.py* in *primeri.py*.
 
 V mapi **Prevedbe problemov na SAT - primeri** sta programa *barvanje_grafov.py* in *sudoku.py*.
 
-V mapi **Dpll* sta programa *dpll.py* in *dpll_primeri.py*.
+V mapi **Dpll** sta programa *dpll.py* in *dpll_primeri.py*.
 
 
 
