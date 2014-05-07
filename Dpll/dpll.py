@@ -101,44 +101,34 @@ def ciste_pojavitve(string_formula,znane_spr={}):
 
 
 def vstavljanje(list_formula, znane_spr={}):
-    # preverimo vse možnosti za preostale spremenljivke
+    # preizkušamo možnosti za spremenljivke, ki so nam ostale
     if list_formula==[]:
         return ('Formula je izpolnljiva', znane_spr)
     
     elif list_formula=='Ni rešitve':
-        return ('Ni rešitve',{})
+        return ('Ni rešitve',3)
 
     else:
-        flag=False
-        for i in list_formula:
-            for j in i:
-                if j not in znane_spr:
-                    l=j
-                    flag=True
-                    break
-                
-        list_formula1=list_formula.copy()
-        znane_spr1=znane_spr.copy()
-               
-        if flag:
-            znane_spr1[l]=True
-            for k in list_formula1[:]:
+        l = list_formula[0].keys()[0] 
+        list_formula1=list_formula.copy()        
+        znane_spr[l]=True
+        for k in list_formula1[:]:
+            if l in k:                        
+                if k[l]==True:
+                    list_formula1.remove(k)                           
+                else:
+                    del k[l]
+        (list_formula1, znane_spr1)=dpll1(list_formula1, znane_spr)            
+        (list_formula1, znane_spr1)=vstavljanje(list_formula1, znane_spr1)
+        if list_formula1=='Ni rešitve.':
+            znane_spr[l]=False
+            for k in list_formula[:]:
                 if l in k:                        
-                    if k[l]==True:
-                        list_formula1.remove(k)                           
+                    if k[l]==False:
+                        list_formula.remove(k)                           
                     else:
                         del k[l]
-            (list_formula1, znane_spr1)=dpll1(list_formula1, znane_spr1)            
-            (list_formula1, znane_spr1)=vstavljanje(list_formula1, znane_spr1)
-            if list_formula1=='Ni rešitve.':
-                znane_spr[l]=False
-                for k in list_formula[:]:
-                    if l in k:                        
-                        if k[l]==False:
-                            list_formula.remove(k)                           
-                        else:
-                            del k[l]
-                        (list_formula, znane_spr)=dpll1(list_formula, znane_spr)
-                        return vstavljanje(list_formula, znane_spr)
-            else:
-                return (list_formula1, znane_spr1)                    
+                    (list_formula, znane_spr)=dpll1(list_formula, znane_spr)
+                    return vstavljanje(list_formula, znane_spr)
+        else:
+            return (list_formula1, znane_spr1)                     
