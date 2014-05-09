@@ -54,7 +54,7 @@ def dpll1(list_formula, znane_spr={}):
                 else:
                     znane_spr[l]=b
 
-                # gremo po vseh stavkih v katerih nastopa spremenljivka l
+                # gremo po vseh stavkih, v katerih nastopa spremenljivka l
                 for k in list_formula[:]:
                     if l in k:
                         # če ima pripisano vrednost odstranimo stavek
@@ -104,12 +104,17 @@ def vstavljanje(list_formula, znane_spr={}):
     # preizkušamo možnosti za spremenljivke, ki so nam ostale
     if list_formula==[]:
         return ('Formula je izpolnljiva', znane_spr)
-    
+
+    # če nam dpll1 vrne "Ni rešitve", naj tudi vstavljanje vrne "Ni rešitve"
     elif list_formula=='Ni rešitve':
-        return ('Ni rešitve',3)
+        return ('Ni rešitve',{})
 
     else:
-        l = list_formula[0].keys()[0] 
+        # vzamemo kar prvo spremenljivko iz preostale formule
+        l = list_formula[0].keys()[0]
+
+        # naredimo kopijo formule, če se pri predpisani vrednosti True no bo izšlo, bomo potrebovali
+        # originalno formulo
         list_formula1=list_formula.copy()        
         znane_spr[l]=True
         for k in list_formula1[:]:
@@ -118,6 +123,8 @@ def vstavljanje(list_formula, znane_spr={}):
                     list_formula1.remove(k)                           
                 else:
                     del k[l]
+
+        # lahko se pojavijo stavki dolžine 0 ali 1, zato uporabimo dpll1            
         (list_formula1, znane_spr1)=dpll1(list_formula1, znane_spr)            
         (list_formula1, znane_spr1)=vstavljanje(list_formula1, znane_spr1)
         if list_formula1=='Ni rešitve.':
