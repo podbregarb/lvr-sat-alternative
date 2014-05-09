@@ -101,4 +101,4 @@ def sudoku4(seznam):
                     r.append(bool.Or([bool.Not(bool.Atom((2+x*2,1+y*2,l))),bool.Not(bool.Atom((2+x*2,2+y*2,l)))]))
 
                                                           
-    return bool.And(r+znane)
+    return bool.And(znane+r)
