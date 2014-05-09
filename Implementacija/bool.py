@@ -2,7 +2,7 @@
 
 # Osnovne podatkovne strukture za logicne formule
 
-from cnf import *
+from . import cnf
 
 # Razredi za predstavitev formul:
 # za vsak razred, ki ga definiramo povemo kako ga predstavimo in kako ga
@@ -23,7 +23,7 @@ class Tru():
             return self
         
     def cnf(self):
-        return Cnf([])
+        return cnf.Cnf([])
         
 # definiramo razred Fls
 class Fls():
@@ -40,7 +40,7 @@ class Fls():
             return self
 
     def cnf(self):
-        return Cnf([Stavek([])])
+        return cnf.Cnf([cnf.Stavek([])])
 
 # definiramo razred Atom
 class Atom():
@@ -59,7 +59,7 @@ class Atom():
 
     def cnf(self):
         """Vrni CNF obliko objekta self."""
-        return Cnf([Stavek([Lit(self.ime)])])
+        return cnf.Cnf([cnf.Stavek([cnf.Lit(self.ime)])])
 
 # definiramo razred Not
 class Not():
@@ -74,7 +74,7 @@ class Not():
 
     def cnf(self):
         if isinstance(self.formula, Atom):
-            return Cnf([Stavek([Til(self.formula.ime)])])
+            return cnf.Cnf([cnf.Stavek([cnf.Til(self.formula.ime)])])
         else:
             return self.nnf().cnf()
 
@@ -97,7 +97,7 @@ class And():
         stavki = []
         for p in self.formule:
             stavki.extend(p.cnf().stavki)
-        return Cnf(stavki)
+        return cnf.Cnf(stavki)
         
 # definiramo razred Or
 class Or():
@@ -116,7 +116,7 @@ class Or():
 
     def cnf(self):
         if len(self.formule) == 0:
-            return Cnf([Stavek([])])
+            return cnf.Cnf([cnf.Stavek([])])
         elif len(self.formule) == 1:
             return self.formule[0].cnf()
         else:
@@ -124,7 +124,7 @@ class Or():
             stavki = []
             for s1 in self.formule[0].cnf().stavki:
                 for s2 in Or(self.formule[1:]).cnf().stavki:
-                    stavki.append(Stavek(s1.literali + s2.literali))
-            return Cnf(stavki)
+                    stavki.append(cnf.Stavek(s1.literali + s2.literali))
+            return cnf.Cnf(stavki)
 
 

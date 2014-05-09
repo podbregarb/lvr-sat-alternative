@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
-from bool import *
-from cnf import *
+import Implementacija.bool as bool
+import Implementacija.cnf as cnf
 import copy
 
 
@@ -16,7 +16,7 @@ def dpll(formula):
         if len(s.literali)==0:
             return ('Ni rešitve', {})
         for l in s.literali:
-            b=isinstance(l,Lit)
+            b=isinstance(l,cnf.Lit)
             if l.ime in d and d[l.ime]!=b:
                 d={}
                 break
