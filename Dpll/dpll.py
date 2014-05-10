@@ -127,7 +127,7 @@ def vstavljanje(list_formula, znane_spr={}):
         # lahko se pojavijo stavki dolžine 0 ali 1, zato uporabimo dpll1            
         (list_formula1, znane_spr1)=dpll1(list_formula1, znane_spr)            
         (list_formula1, znane_spr1)=vstavljanje(list_formula1, znane_spr1)
-        if list_formula1=='Ni rešitve.':
+        if list_formula1=='Ni rešitve':
             znane_spr[l]=False
             for k in list_formula[:]:
                 if l in k:                        

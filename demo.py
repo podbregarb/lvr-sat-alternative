@@ -26,44 +26,54 @@ def sudoku4x4():
     while ven:
         odlocitev=input('Ali zelis vpisati svoj sudoku? (y/n)  ')
         if odlocitev=='y' or odlocitev=='n':
-            def risanje(resitev):
+            def risanje(resitev,besedilo=''):
                 window=Tk()
-                canvas=Canvas(window, width=200, height=200)
+                canvas=Canvas(window, width=280, height=300)
                 canvas.pack()
-                canvas.create_rectangle(15,15,185,185, width=3)
-                canvas.create_line(60,15,60,185)
-                canvas.create_line(100,15,100,185, width=3)
-                canvas.create_line(140,15,140,185)
-                canvas.create_line(15,140,185,140)
-                canvas.create_line(15,60,185,60)
-                canvas.create_line(15,100,185,100, width=3)
+                canvas.create_text(120,17,text=besedilo,font=('Arial',18))
+                canvas.create_rectangle(20,40,260,280, width=3)
+                canvas.create_line(80,40,80,280)
+                canvas.create_line(140,40,140,280, width=3)
+                canvas.create_line(200,40,200,280)
+                canvas.create_line(20,100,260,100)
+                canvas.create_line(20,220,260,220)
+                canvas.create_line(20,160,260,160, width=3)
                 for i in resitev.keys():
-                    canvas.create_text(i[1]*40,i[0]*40,text='{0}'.format(i[2]),font=('Arial',25))  
+                    canvas.create_text(50+(i[1]-1)*60,70+(i[0]-1)*60,text='{0}'.format(i[2]),font=('Arial',30))  
                 window.mainloop()
             if odlocitev=='n':
                 f=open('Prevedbe_problemov/sudoku4.txt','r')
                 f=f.readlines()
+                narisi={}
                 seznam=[]
                 for i in range(len(f)):
                     for j in range(0,7,2):
                         if f[i][j]!='0':
                             seznam.append((i+1,j//2+1,int(f[i][j])))
+                            narisi[(i+1,j//2+1,int(f[i][j]))]=True
+                risanje(narisi,'Rešujemo sudoku:')
         ## to se delam: :D
             if odlocitev=='y':
                 print ('Sudoku naj bo oblike "1 2 0 0,0 3 4 0,...", kjer 0 pomeni, da je polje prazno.')
                 sud=input('Vpisi svoj sudoku:  \n')
                 sud=sud.split(',')
+                narisi={}
                 seznam=[]
                 for i in range(len(sud)):
                     for j in range(0,7,2):
                         if sud[i][j]!='0':
                             seznam.append((i+1,j//2+1,int(sud[i][j])))
-
-            resitev=dpll.dpll(sudoku.sudoku4(seznam))[1]
-            for i in resitev.copy():
-                if resitev[i]==False:
-                    del resitev[i]
-            risanje(resitev)
+                            narisi[(i+1,j//2+1,int(sud[i][j]))]=True
+                risanje(narisi,'Rešujemo sudoku:')
+            obstaja=dpll.dpll(sudoku.sudoku4(seznam))[0]
+            if obstaja=='Ni rešitve':
+                print ('Ta sudoku ni rešljiv.')
+            else:
+                resitev=dpll.dpll(sudoku.sudoku4(seznam))[1]
+                for i in resitev.copy():
+                    if resitev[i]==False:
+                        del resitev[i]
+                risanje(resitev,'Rešen sudoku:')
         else:
             break
             
