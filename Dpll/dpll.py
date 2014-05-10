@@ -111,7 +111,7 @@ def vstavljanje(list_formula, znane_spr={}):
 
     else:
         # vzamemo kar prvo spremenljivko iz preostale formule
-        l = list_formula[0].keys()[0]
+        l = list(list_formula[0].keys())[0]
 
         # naredimo kopijo formule, če se pri predpisani vrednosti True no bo izšlo, bomo potrebovali
         # originalno formulo
