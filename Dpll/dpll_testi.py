@@ -3,6 +3,8 @@
 from . import dpll
 import Implementacija.bool as bool
 import Implementacija.cnf as cnf
+import Prevedbe_problemov.barvanje_grafov as barvanje_grafov
+import Prevedbe_problemov.sudoku as sudoku
 
 ##testne funkcije
 f=bool.And([bool.Or([bool.Atom('a')]),bool.Or([bool.Atom('b'),bool.Atom('c'),bool.Atom('a')]),bool.Or([bool.Atom('c'),bool.Atom('d'),bool.Not(bool.Atom('a'))]),bool.Or([bool.Atom('b'),bool.Atom('c')]),bool.Or([bool.Atom('a')])])
