@@ -4,11 +4,11 @@
 
 V mapi **Implementacija** so programi *bool.py*, *cnf.py* in *primeri.py*. 
 
-V mapi **Prevedbe problemov na SAT - primeri** sta programa *barvanje_grafov.py* in *sudoku.py*.
+V mapi **Prevedbe problemov na SAT - primeri** so programi *barvanje_grafov.py*, *sudoku9x9.py* in *sudoku4x4.py* ter tekstovna datoteka *sudoku4.txt*.
 
 V mapi **Dpll** sta programa *dpll.py* in *dpll_primeri.py*.
 
-Program *demo.py* je glavni program, ki ga zaženemo.
+Program **demo.py** je glavni program, ki ga zaženemo.
 
 
 ##  Opis algoritmov in datotek 
@@ -26,7 +26,7 @@ Program *primeri.py* izpiše primere uporabe cnf in nnf oblike ter primer izpisa 
 
 V programu *barvanje_grafov.py* je sprogramirana prevedba problema barvanja vozlišè grafa s k barvami v SAT obliko.
 
-V programu *sudoku9x9.py* je sprogramirana prevedba 9x9 sudokuja, ki pa je dlpp ne reši, ker je formula predolga (že samo printanje formule primera na koncu je èasovno zahtevno).
+V programu *sudoku9x9.py* je sprogramirana prevedba 9x9 sudokuja, ki pa je dpll ne reši, ker je formula predolga (že samo printanje formule primera na koncu je èasovno zahtevno).
 
 V programu *sudoku4x4.py* je sprogramirana prevedba 4x4 sudokuja v SAT obliko.
 
@@ -35,7 +35,7 @@ V tekstovni datoteki *sudoku4.txt* je podan primer 4x4 sudokuja, ki ga program *
 
 ### Dpll
 
-V programu *dpll.py* je sprogramiran SAT solver. Le-ta pove, èe je dana izjavna formula izpolnljiva. V primeru da je, vrne tekst Formula je izpolnljiva in seznam spremenljivk s pripadajoèimi vrednostmi, za katere je formula izpolnljiva. V primeru, da kakim spremenljivkam ne pripiše vrednosti, lahko le-te zavzamejo poljubno vrednost. V primeru, da ni rešitve vrne tekst Ni rešitve in prazen seznam.
+V programu *dpll.py* je sprogramiran SAT solver. Le-ta pove, èe je dana izjavna formula izpolnljiva. V primeru da je, vrne tekst 'Formula je izpolnljiva' in seznam spremenljivk s pripadajoèimi vrednostmi, za katere je formula izpolnljiva. V primeru, da kakim spremenljivkam ne pripiše vrednosti, lahko le-te zavzamejo poljubno vrednost. V primeru, da ni rešitve vrne tekst 'Ni rešitve' in prazen seznam.
 
 Program *dpll_testi.py* vsebuje testne primere, s katerimi smo preverili delovanje našega SAT solverja.
 
