@@ -20,6 +20,9 @@ def test_dpll():
     dpll_testi.test()
 
 # uporaba dpll na sudokuju in barvanju grafov
+# dva primera:
+primer0='0 0 0 0,0 0 0 0,0 0 0 0,0 0 0 0'
+primer1='1 1 2 3,0 0 0 0,0 0 0 0,0 0 0 0'
 def sudoku4x4():
     print('Ta program resuje 4x4 sudoku.')
     ven=True
@@ -56,6 +59,10 @@ def sudoku4x4():
             if odlocitev=='y':
                 print ('Sudoku naj bo oblike "1 2 0 0,0 3 4 0,...", kjer 0 pomeni, da je polje prazno.')
                 sud=input('Vpisi svoj sudoku:  \n')
+                if sud=='primer0':
+                    sud=primer0
+                if sud=='primer1':
+                    sud=primer1
                 sud=sud.split(',')
                 narisi={}
                 seznam=[]
@@ -65,15 +72,14 @@ def sudoku4x4():
                             seznam.append((i+1,j//2+1,int(sud[i][j])))
                             narisi[(i+1,j//2+1,int(sud[i][j]))]=True
                 risanje(narisi,'Rešujemo sudoku:')
-            obstaja=dpll.dpll(sudoku.sudoku4(seznam))[0]
-            if obstaja=='Ni rešitve':
+            resitev=dpll.dpll(sudoku.sudoku4(seznam))
+            if resitev[0]=='Ni rešitve':
                 print ('Ta sudoku ni rešljiv.')
             else:
-                resitev=dpll.dpll(sudoku.sudoku4(seznam))[1]
-                for i in resitev.copy():
-                    if resitev[i]==False:
-                        del resitev[i]
-                risanje(resitev,'Rešen sudoku:')
+                for i in resitev[1].copy():
+                    if resitev[1][i]==False:
+                        del resitev[1][i]
+                risanje(resitev[1],'Rešen sudoku:')
         else:
             break
             

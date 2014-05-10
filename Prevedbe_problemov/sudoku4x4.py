@@ -53,3 +53,5 @@ def sudoku4(seznam):
 
                                                           
     return bool.And(znane+r)
+
+
