@@ -58,6 +58,6 @@ Ukaz *sudoku4x4()* rešuje sudoku velikosti 4x4. Program nas sam vodi skozi cel p
 Èe je naš odgovor karkoli drugega, se program konèa.
 Trije primeri, ki pokažejo delovanje tega programa:
 - Odgovorimo z 'y' in vpišemo 'primer0'. Program rešuje prazen sudoku. Vseeno ga reši in prikaže neko rešitev.
-- Odgovorimo z 'y' in vpišemo 'primer1'. Program rešuje nerešljiv sudoku. Vrne 'Ni rešitve'.
+- Odgovorimo z 'y' in vpišemo 'primer1'. Program rešuje nerešljiv sudoku. Vrne 'Ta sudoku ni rešljiv.'.
 - Odgovorimo z 'n'. Program rešuje enolièno rešljiv sudoku.
 
