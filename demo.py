@@ -19,6 +19,24 @@ def osnove():
 def test_dpll():
     dpll_testi.test()
 
+
+############        BARVANJE GRAFOV        ############
+# testi:
+Test0=(2,[(1,2)],2) # graf na dveh točkah
+Test1=(6,[(1,2),(2,3),(3,4),(4,5),(5,6)],2) # veriga šestih točk
+Test2=(4,[(1,2),(2,3),(3,4),(4,1)],2) # kvadrat
+Test3=(4,[(1,2),(2,3),(3,4),(4,1),(1,3),(2,4)],2)
+def barvanje():
+    resitev = dpll.dpll(barvanje_grafov.barvanje_grafov(Test3[0],Test3[1],Test3[2]))
+    for i in resitev[1].copy():
+        if resitev[1][i]==False:
+            del resitev[1][i]
+    return resitev
+
+
+
+    
+############             SUDOKU            ############
 # uporaba dpll na sudokuju in barvanju grafov
 # testi:
 test0='0 0 0 0,0 0 0 0,0 0 0 0,0 0 0 0' # prazen
