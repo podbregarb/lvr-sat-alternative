@@ -132,15 +132,15 @@ def sudoku4x4():
 ############          SUDOKU  9x9          ############
 # uporaba dpll na sudokuju 9x9
 # testi:
-test0='0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0' # prazen
-test1='1 1 2 3 0 0 0 0 0,0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0' # nerešljiv
-test2='1 0 2 3 0 0 0 0 0,0 1 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0' # nerešljiv
-test3='1 0 2 3 0 0 0 0 0,0 0 0 0 0 0 0 0 0,1 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0' # nerešljiv
-testi=[test0,test1,test2,test3]
+TEst0='0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0' # prazen
+TEst1='1 1 2 3 0 0 0 0 0,0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0' # nerešljiv
+TEst2='1 0 2 3 0 0 0 0 0,0 1 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0' # nerešljiv
+TEst3='1 0 2 3 0 0 0 0 0,0 0 0 0 0 0 0 0 0,1 0 0 0 0 0 0 0 0,0 0 0 0 0 0 0 0 0' # nerešljiv
+TEsti=[TEst0,TEst1,TEst2,TEst3]
 # primeri:
-#primeri=[primer0,primer1,primer2,primer3]
+#PRimeri=[primer0,primer1,primer2,primer3]
 primer=[(1,1,5),(1,2,3),(1,5,7),(2,1,6),(2,4,1),(2,5,9),(2,6,5),(3,2,9),(3,3,8),(3,8,6),(4,1,8),(4,5,6),(4,9,3),(5,1,4),(5,4,8),(5,6,3),(5,9,1),(6,1,7),(6,5,2),(6,9,6),(7,2,6),(7,7,2),(7,8,8),(8,4,4),(8,5,1),(8,6,9),(8,9,5),(9,5,8),(9,8,7),(9,9,9)]
-print(dpll.dpll(sudoku9.sudoku9(primer)))
+
 def sudoku9x9():
     print('Ta program resuje 9x9 sudoku.')
     
@@ -198,9 +198,9 @@ def sudoku9x9():
                 print ('Sudoku naj bo oblike "1 2 0 0 0 0 0 0 0,0 0 0 3 4 0 0 0 0,...", kjer 0 pomeni, da je polje prazno.')
                 sud=input('Vpisi svoj sudoku:  \n')
                 if sud[:-1]=='test':
-                    sud=testi[int(sud[-1])]
+                    sud=TEsti[int(sud[-1])]
                 if sud[:-1]=='primer':
-                    sud=primeri[int(sud[-1])]
+                    sud=PRimeri[int(sud[-1])]
                 sud=sud.split(',')
                 narisi={}
                 seznam=[]
