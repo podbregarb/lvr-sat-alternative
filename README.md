@@ -53,7 +53,9 @@ Zaženemo program **demo.py**. V Python Shell-u zaènemo pisati ukaze.
 
 Ukaz **_osnove()_** izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
 
-Ukaz **_test_dpll()_** izpiše testne primere, s katerimi smo preverili delovanje našega SAT solverja.
+Ukaz **_test_dpll(t)_** izpiše t testnih primerov, s katerimi smo preverili delovanje našega SAT solverja. Do t=5 so osnovni testi (prazen And, Or in podobni). 'test7' 
+(zadnji za t=8) testira delovanje funkcije, ki na koncu zaène preverjati vse možnosti (s èistimi pojavitvami in stavki dolžine <=1 se formula še ni rešila). Najveèji t je 14. 
+Testi po t=8 so zraven le ker smo jih uporabljali za testiranje še preden smo imeli sprogramirano funkcijo *vse_moznosti*, niso pa pomembni.
 
 Ukaz **_sudoku4x4()_** rešuje sudoku velikosti 4x4. Program nas sam vodi skozi cel proces. Ves èas nas sprašuje, èe želimo sami vpisati sudoku.  
 Èe odgovorimo 'n' (ne), potem program reši sudoku iz tekstovne datoteke *Implementacija/sudoku4.txt* (naš sudoku lahko podamo tudi tam).  

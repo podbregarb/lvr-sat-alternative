@@ -17,8 +17,8 @@ def osnove():
     primer.primer()
 
 # za testiranje dpll
-def test_dpll():
-    dpll_testi.test()
+def test_dpll(t):
+    dpll_testi.test(t)
 
 
 ############        BARVANJE GRAFOV        ############
