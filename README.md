@@ -48,7 +48,7 @@ Program *dpll_testi.py* vsebuje testne primere, s katerimi smo preverili delovan
 
 Zaženemo program **demo.py**. V Python Shell-u zaènemo pisati ukaze.
 
-Ukaz *osnove()* izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
+Ukaz ** *osnove()* ** izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
 
 Ukaz *test_dpll()* izpiše testne primere, s katerimi smo preverili delovanje našega SAT solverja.
 
@@ -60,5 +60,5 @@ Ukaz *sudoku4x4()* rešuje sudoku velikosti 4x4. Program nas sam vodi skozi cel p
 'test0' je prazen sudoku. Program ga vseeno reši in prikaže neko rešitev. 'test1', 'test2' in 'test3' so nerešljivi sudokuji. 'test4' je poln sudoku. 
 - Vpišemo tekst 'primer0', 'primer1', 'primer2' ali 'primer3'. Primeri so razvršèeni po težavnosti od najlažjega ('primer0') do težjega ('primer3').
 
-Program za vsak rešen sudoku izpiše tudi èas reševanja.
+Program za vsak rešen sudoku izpiše tudi èas reševanja.  
 Èe je naš odgovor karkoli drugega, se program konèa.
