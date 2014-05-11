@@ -28,7 +28,7 @@ def sudoku4(seznam):
         for j in range (1,5):
             for k in range(1,5):
                 for l in range(1,k):
-                    r.append(bool.Not(bool.And([bool.Atom((i,j,k)),bool.Atom((i,j,l))])))
+                    r.append(bool.Or([bool.Not(bool.Atom((i,j,k))),bool.Not(bool.Atom((i,j,l)))]))
 
                     
     # v nobeni vrstici/stolpcu ni istih cifer
@@ -43,15 +43,13 @@ def sudoku4(seznam):
     # v nobenem 2x2 kvadratku ni istih cifer
     for x in range(0,2):
         for y in range(0,2):
-                for l in range(1,5):
-                    r.append(bool.Or([bool.Not(bool.Atom((1+x*2,1+y*2,l))),bool.Not(bool.Atom((1+x*2,2+y*2,l)))]))
-                    r.append(bool.Or([bool.Not(bool.Atom((1+x*1,1+y*2,l))),bool.Not(bool.Atom((2+x*2,1+y*2,l)))]))
-                    r.append(bool.Or([bool.Not(bool.Atom((1+x*2,1+y*2,l))),bool.Not(bool.Atom((2+x*2,2+y*2,l)))]))
-                    r.append(bool.Or([bool.Not(bool.Atom((1+x*2,2+y*2,l))),bool.Not(bool.Atom((2+x*2,1+y*2,l)))]))
-                    r.append(bool.Or([bool.Not(bool.Atom((1+x*2,2+y*2,l))),bool.Not(bool.Atom((2+x*2,2+y*2,l)))]))
-                    r.append(bool.Or([bool.Not(bool.Atom((2+x*2,1+y*2,l))),bool.Not(bool.Atom((2+x*2,2+y*2,l)))]))
+            for l in range(1,5):
+                r.append(bool.Or([bool.Not(bool.Atom((1+x*2,1+y*2,l))),bool.Not(bool.Atom((1+x*2,2+y*2,l)))]))
+                r.append(bool.Or([bool.Not(bool.Atom((1+x*1,1+y*2,l))),bool.Not(bool.Atom((2+x*2,1+y*2,l)))]))
+                r.append(bool.Or([bool.Not(bool.Atom((1+x*2,1+y*2,l))),bool.Not(bool.Atom((2+x*2,2+y*2,l)))]))
+                r.append(bool.Or([bool.Not(bool.Atom((1+x*2,2+y*2,l))),bool.Not(bool.Atom((2+x*2,1+y*2,l)))]))
+                r.append(bool.Or([bool.Not(bool.Atom((1+x*2,2+y*2,l))),bool.Not(bool.Atom((2+x*2,2+y*2,l)))]))
+                r.append(bool.Or([bool.Not(bool.Atom((2+x*2,1+y*2,l))),bool.Not(bool.Atom((2+x*2,2+y*2,l)))]))
 
                                                           
     return bool.And(znane+r)
-
-
