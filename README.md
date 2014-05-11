@@ -48,7 +48,7 @@ Program *dpll_testi.py* vsebuje testne primere, s katerimi smo preverili delovan
 
 Zaženemo program **demo.py**. V Python Shell-u zaènemo pisati ukaze.
 
-Ukaz ** *osnove()* ** izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
+Ukaz ** _osnove()_ ** izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
 
 Ukaz *test_dpll()* izpiše testne primere, s katerimi smo preverili delovanje našega SAT solverja.
 
