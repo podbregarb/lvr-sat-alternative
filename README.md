@@ -60,4 +60,5 @@ Ukaz *sudoku4x4()* rešuje sudoku velikosti 4x4. Program nas sam vodi skozi cel p
 'test0' je prazen sudoku. Program ga vseeno reši in prikaže neko rešitev. 'test1', 'test2' in 'test3' so nerešljivi sudokuji. 'test4' je poln sudoku. 
 - Vpišemo tekst 'primer0', 'primer1', 'primer2' ali 'primer3'. Primeri so razvršèeni po težavnosti od najlažjega ('primer0') do težjega ('primer3').
 
+Program za vsak rešen sudoku izpiše tudi èas reševanja.
 Èe je naš odgovor karkoli drugega, se program konèa.
