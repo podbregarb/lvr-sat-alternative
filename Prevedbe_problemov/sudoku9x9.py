@@ -49,11 +49,11 @@ def sudoku9(seznam):
                         if m<i:
                             for n in range(1,4):
                                 for l in range(1,10):
-                                    r.append(bool.Or([bool.Not(bool.Atom((i+x*2,j+y*2,l))),bool.Not(bool.Atom((m+x*2,n+y*2,l)))]))
+                                    r.append(bool.Or([bool.Not(bool.Atom((i+x*3,j+y*3,l))),bool.Not(bool.Atom((m+x*3,n+y*3,l)))]))
                         if m==i:                            
                             for n in range(1,j):
                                 for l in range(1,10):
-                                    r.append(bool.Or([bool.Not(bool.Atom((i+x*2,j+y*2,l))),bool.Not(bool.Atom((m+x*2,n+y*2,l)))]))
+                                    r.append(bool.Or([bool.Not(bool.Atom((i+x*3,j+y*3,l))),bool.Not(bool.Atom((m+x*3,n+y*3,l)))]))
 
                                   
     return bool.And(znane+r)
