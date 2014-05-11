@@ -29,6 +29,9 @@ V programu *barvanje_grafov.py* je sprogramirana prevedba problema barvanja vozl
 V programu *sudoku9x9.py* je sprogramirana prevedba 9x9 sudokuja, ki pa je dpll ne reši, ker je formula predolga 
 (že samo printanje formule primera na koncu je èasovno zahtevno).
 
+V tekstovni datoteki *sudoku9.txt* je podan primer 9x9 sudokuja, ki ga program *demo.py* reši preko programa *dpll.py* in preko programa 
+*sudoku9x9.py*, ki sestavi izjavno formulo.
+
 V programu *sudoku4x4.py* je sprogramirana prevedba 4x4 sudokuja v SAT obliko.
 
 V tekstovni datoteki *sudoku4.txt* je podan primer 4x4 sudokuja, ki ga program *demo.py* reši preko programa *dpll.py* in preko programa 
@@ -62,3 +65,11 @@ Ukaz **_sudoku4x4()_** rešuje sudoku velikosti 4x4. Program nas sam vodi skozi c
 
 Program za vsak rešen sudoku izpiše tudi èas reševanja.  
 Èe je naš odgovor karkoli drugega, se program konèa.
+
+Ukaz **_sudoku9x9()_** deluje enako kot *sudoku4x4()*, le da imamo tu 4 primere.
+
+
+## Pomembna opomba
+
+Razlog, da je veèino commitov narejenih iz mojega uporabniškega imena (podbregarb) je v tem, da smo se veèinoma dobili vsi skupaj pri nekomu doma in delali projekt na istem 
+raèunalniku. Vsak od nas je v projekt vložil veliko èasa in vsi smo se z njim veliko nauèili.

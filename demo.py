@@ -219,7 +219,7 @@ def sudoku9x9():
             t1=time.clock()
             resitev=dpll.dpll(sudoku9.sudoku9(seznam))
             t2=time.clock()
-            print('Tvoj sudoku sem reševal {0} sekunde.'.format(t2-t1))
+            print('Tvoj sudoku sem reševal {0} sekund.'.format(t2-t1))
             if resitev[0]=='Ni rešitve':
                 print ('Ta sudoku ni rešljiv.')
             
