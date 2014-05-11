@@ -52,12 +52,11 @@ Ukaz *osnove()* izpiše primere uporabe cnf in nnf oblike ter primer izpisa formu
 
 Ukaz *test_dpll()* izpiše testne primere, s katerimi smo preverili delovanje našega SAT solverja.
 
-Ukaz *sudoku4x4()* rešuje sudoku velikosti 4x4. Program nas sam vodi skozi cel proces. Ves èas nas sprašuje, èe želimo sami vpisati sudoku. 
-Èe je naš odgovor 'y' (da), potem vpišemo želeni sudoku v formatu, ki ga program zahteva. 
+Ukaz *sudoku4x4()* rešuje sudoku velikosti 4x4. Program nas sam vodi skozi cel proces. Ves èas nas sprašuje, èe želimo sami vpisati sudoku.  
 Èe odgovorimo 'n' (ne), potem program reši sudoku iz tekstovne datoteke *Implementacija/sudoku4.txt* (naš sudoku lahko podamo tudi tam). 
+Èe je naš odgovor 'y' (da), potem imamo tri možnosti:
+- Vpišemo svoj sudoku v formatu, ki ga zahteva program.
+- Vpišemo tekst 'test0', 'test1', 'test2', 'test3' ali 'test4'. To so testni sudokuji. Program jih pokaže preden jih zaène reševati in nam nato prikaže še rešen sudoku.
+'test0' je prazen sudoku. Program ga vseeno reši in prikaže neko rešitev. 'test1', 'test2' in 'test3' so nerešljivi sudokuji. 'test4' je poln sudoku. 
+- Vpišemo tekst 'primer0', 'primer1', 'primer2' ali 'primer3'. Primeri so razvršèeni po težavnosti od najlažjega ('primer0') do težjega ('primer3').
 Èe je naš odgovor karkoli drugega, se program konèa.
-Trije primeri, ki pokažejo delovanje tega programa:
-- Odgovorimo z 'y' in vpišemo 'primer0'. Program rešuje prazen sudoku. Vseeno ga reši in prikaže neko rešitev.
-- Odgovorimo z 'y' in vpišemo 'primer1'. Program rešuje nerešljiv sudoku. Vrne 'Ta sudoku ni rešljiv.'.
-- Odgovorimo z 'n'. Program rešuje enolièno rešljiv sudoku.
-

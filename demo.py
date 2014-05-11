@@ -8,7 +8,7 @@ import Prevedbe_problemov.sudoku4x4 as sudoku
 import Implementacija.primer as primer
 import copy
 from tkinter import *
-
+import time
 
 
 # zažene funkcijo primer iz programa primer.py (iz mape Implementacija)
@@ -20,9 +20,19 @@ def test_dpll():
     dpll_testi.test()
 
 # uporaba dpll na sudokuju in barvanju grafov
-# dva primera:
-primer0='0 0 0 0,0 0 0 0,0 0 0 0,0 0 0 0'
-primer1='1 1 2 3,0 0 0 0,0 0 0 0,0 0 0 0'
+# testi:
+test0='0 0 0 0,0 0 0 0,0 0 0 0,0 0 0 0' # prazen
+test1='1 1 2 3,0 0 0 0,0 0 0 0,0 0 0 0' # nerešljiv
+test2='1 0 2 3,0 1 0 0,0 0 0 0,0 0 0 0' # nerešljiv
+test3='1 0 2 3,0 0 0 0,1 0 0 0,0 0 0 0' # nerešljiv
+test4='1 2 3 4,3 4 1 2,4 3 2 1,2 1 4 3' # poln
+testi=[test0,test1,test2,test3,test4]
+# primeri:
+primer0='3 0 4 0,0 1 0 2,0 4 0 3,2 0 1 0' # zelo lahek
+primer1='0 2 1 3,0 0 0 4,0 0 0 1,0 4 3 2' # lahek
+primer2='0 1 3 0,0 0 0 4,0 0 0 1,0 2 4 0' # srednje težki
+primer3='0 2 0 0,1 0 2 0,2 0 3 0,0 3 0 0' # težji
+primeri=[primer0,primer1,primer2,primer3]
 def sudoku4x4():
     print('Ta program resuje 4x4 sudoku.')
     
@@ -69,10 +79,10 @@ def sudoku4x4():
             if odlocitev=='y':
                 print ('Sudoku naj bo oblike "1 2 0 0,0 3 4 0,...", kjer 0 pomeni, da je polje prazno.')
                 sud=input('Vpisi svoj sudoku:  \n')
-                if sud=='primer0':
-                    sud=primer0
-                if sud=='primer1':
-                    sud=primer1
+                if sud[:-1]=='test':
+                    sud=testi[int(sud[-1])]
+                if sud[:-1]=='primer':
+                    sud=primeri[int(sud[-1])]
                 sud=sud.split(',')
                 narisi={}
                 seznam=[]
@@ -84,15 +94,19 @@ def sudoku4x4():
                 risanje(narisi,'Rešujemo sudoku:')
                 
             # rešimo sudoku in vrnemo 'Ni rešitve' če ni rešljiv, oz. narišemo rešitev, če je rešljiv
+            t1=time.clock()
             resitev=dpll.dpll(sudoku.sudoku4(seznam))
+            t2=time.clock()
+            print('Tvoj sudoku sem reševal {0} sekunde.'.format(t2-t1))
             if resitev[0]=='Ni rešitve':
                 print ('Ta sudoku ni rešljiv.')
+            
             else:
                 for i in resitev[1].copy():
                     if resitev[1][i]==False:
                         del resitev[1][i]
                 risanje(resitev[1],'Rešen sudoku:')
-                
+            
         else:
             break
             
