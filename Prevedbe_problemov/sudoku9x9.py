@@ -25,7 +25,7 @@ def sudoku9(seznam):
             
     # nobeno polje nima več kot eno cifro
     for i in range(1,10):
-        for j in range (1,10):
+        for j in range(1,10):
             for k in range(1,10):
                 for l in range(1,k):
                     r.append(bool.Or([bool.Not(bool.Atom((i,j,k))),bool.Not(bool.Atom((i,j,l)))]))
