@@ -45,7 +45,7 @@ def sudoku4(seznam):
         for y in range(0,2):
             for l in range(1,5):
                 r.append(bool.Or([bool.Not(bool.Atom((1+x*2,1+y*2,l))),bool.Not(bool.Atom((1+x*2,2+y*2,l)))]))
-                r.append(bool.Or([bool.Not(bool.Atom((1+x*1,1+y*2,l))),bool.Not(bool.Atom((2+x*2,1+y*2,l)))]))
+                r.append(bool.Or([bool.Not(bool.Atom((1+x*2,1+y*2,l))),bool.Not(bool.Atom((2+x*2,1+y*2,l)))]))
                 r.append(bool.Or([bool.Not(bool.Atom((1+x*2,1+y*2,l))),bool.Not(bool.Atom((2+x*2,2+y*2,l)))]))
                 r.append(bool.Or([bool.Not(bool.Atom((1+x*2,2+y*2,l))),bool.Not(bool.Atom((2+x*2,1+y*2,l)))]))
                 r.append(bool.Or([bool.Not(bool.Atom((1+x*2,2+y*2,l))),bool.Not(bool.Atom((2+x*2,2+y*2,l)))]))
