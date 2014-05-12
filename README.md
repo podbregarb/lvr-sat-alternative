@@ -34,6 +34,8 @@ V tekstovni datoteki *sudoku9.txt* je podan primer 9x9 sudokuja, ki ga program *
 
 V programu *sudoku4x4.py* je sprogramirana prevedba 4x4 sudokuja v SAT obliko.
 
+Program *sudoku4x4_primeri.py* je namenjen predstavitvi testov in primerov za sudoku velikosti 4x4. Ta program uporablja *demo.py* za prikaz nerešenih in rešenih sudokujev.
+
 V tekstovni datoteki *sudoku4.txt* je podan primer 4x4 sudokuja, ki ga program *demo.py* reši preko programa *dpll.py* in preko programa 
 *sudoku4x4.py*, ki sestavi izjavno formulo.
 
