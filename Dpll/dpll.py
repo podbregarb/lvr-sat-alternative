@@ -115,8 +115,11 @@ def vstavljanje(list_formula, znane_spr={}):
 
         # naredimo kopijo formule, če se pri predpisani vrednosti True no bo izšlo, bomo potrebovali
         # originalno formulo
-        list_formula1=list_formula.copy()        
-        znane_spr[l]=True
+        
+        list_formula1=[x.copy() for x in list_formula]
+        znane_spr1=znane_spr.copy()
+        znane_spr1[l]=True
+        
         for k in list_formula1[:]:
             if l in k:                        
                 if k[l]==True:
@@ -125,7 +128,7 @@ def vstavljanje(list_formula, znane_spr={}):
                     del k[l]
 
         # lahko se pojavijo stavki dolžine 0 ali 1, zato uporabimo dpll1            
-        (list_formula1, znane_spr1)=dpll1(list_formula1, znane_spr)            
+        (list_formula1, znane_spr1)=dpll1(list_formula1, znane_spr1)            
         (list_formula1, znane_spr1)=vstavljanje(list_formula1, znane_spr1)
         if list_formula1=='Ni rešitve':
             znane_spr[l]=False
