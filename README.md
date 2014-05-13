@@ -34,10 +34,10 @@ V tekstovni datoteki *sudoku9.txt* je podan primer 9x9 sudokuja, ki ga program *
 
 V programu *sudoku4x4.py* je sprogramirana prevedba 4x4 sudokuja v SAT obliko.
 
-Program *sudoku4x4_primeri.py* je namenjen predstavitvi testov in primerov za sudoku velikosti 4x4. Ta program uporablja *demo.py* za prikaz nerešenih in rešenih sudokujev.
-
 V tekstovni datoteki *sudoku4.txt* je podan primer 4x4 sudokuja, ki ga program *demo.py* reši preko programa *dpll.py* in preko programa 
 *sudoku4x4.py*, ki sestavi izjavno formulo.
+
+Program *sudoku_demo.py* je namenjen predstavitvi testov in primerov za sudoku velikosti 4x4 in 9x9. Ta program uporablja *demo.py* za prikaz nerešenih in rešenih sudokujev.
 
 
 ### Dpll
@@ -70,7 +70,8 @@ Ukaz **_sudoku4x4()_** rešuje sudoku velikosti 4x4. Program nas sam vodi skozi c
 Program za vsak rešen sudoku izpiše tudi èas reševanja.  
 Èe je naš odgovor karkoli drugega, se program konèa.
 
-Ukaz **_sudoku9x9()_** deluje enako kot *sudoku4x4()*, le da imamo tu 4 primere.
+Ukaz **_sudoku9x9()_** deluje enako kot *sudoku4x4()*, le da imamo tu 4 primere. Tudi zadnjega, tj. 'primer4' ("World's hardest sudoku" :P) izraèuna, le èakati je treba 
+(pri meni je trajalo pol minute).
 
 
 ## Pomembna opomba
