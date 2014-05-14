@@ -57,41 +57,29 @@ def sudoku_demo(s,testi,primeri):
                 window=Tk()
                 if s==4:
                     canvas=Canvas(window, width=280, height=300)
-                    canvas.pack()
-                    # besedilo na vrhu okenčka
-                    canvas.create_text(120,17,text=besedilo,font=('Arial',18))
-                    # vse ravne črte na platnu
-                    canvas.create_rectangle(20,40,260,280, width=3)
-                    canvas.create_line(80,40,80,280)
-                    canvas.create_line(140,40,140,280, width=3)
-                    canvas.create_line(200,40,200,280)
-                    canvas.create_line(20,100,260,100)
-                    canvas.create_line(20,220,260,220)
-                    canvas.create_line(20,160,260,160, width=3)
                 if s==9:
                     canvas=Canvas(window, width=580, height=600)
-                    canvas.pack()
-                    # besedilo na vrhu okenčka
-                    canvas.create_text(120,17,text=besedilo,font=('Arial',18))
+                canvas.pack()
+                # besedilo na vrhu okenčka
+                canvas.create_text(120,17,text=besedilo,font=('Arial',18))
+                if s==4:
+                    # vse ravne črte na platnu
+                    canvas.create_rectangle(20,40,260,280, width=3)
+                    canvas.create_line(140,40,140,280, width=3)
+                    canvas.create_line(20,160,260,160, width=3)
+                    for i in range(2):   
+                        canvas.create_line(80+i*120,40,80+i*120,280)
+                        canvas.create_line(20,100+i*120,260,100+i*120)
+                if s==9:
                     # vse ravne črte na platnu
                     canvas.create_rectangle(20,40,560,580, width=3)
-                    canvas.create_line(80,40,80,580)
-                    canvas.create_line(140,40,140,580)
-                    canvas.create_line(260,40,260,580)
-                    canvas.create_line(320,40,320,580)
-                    canvas.create_line(440,40,440,580)
-                    canvas.create_line(500,40,500,580)
-                    canvas.create_line(200,40,200,580, width=3)
-                    canvas.create_line(380,40,380,580, width=3)
-                    canvas.create_line(20,100,560,100)
-                    canvas.create_line(20,160,560,160)
-                    canvas.create_line(20,280,560,280)
-                    canvas.create_line(20,340,560,340)
-                    canvas.create_line(20,460,560,460)
-                    canvas.create_line(20,520,560,520)
-                    canvas.create_line(20,220,560,220, width=3)
-                    canvas.create_line(20,400,560,400, width=3)
-                # vstavimo cifre v sudoku
+                    for i in [0,1,3,4,6,7]:
+                        canvas.create_line(80+i*60,40,80+i*60,580)
+                        canvas.create_line(20,100+i*60,560,100+i*60)
+                    for j in range(2):
+                        canvas.create_line(200+j*180,40,200+j*180,580, width=3)
+                        canvas.create_line(20,220+j*180,560,220+j*180, width=3)
+                # vstavimo cifre v narisana polja
                 for i in resitev.keys():
                     canvas.create_text(50+(i[1]-1)*60,70+(i[0]-1)*60,text='{0}'.format(i[2]),font=('Arial',30))  
                 window.mainloop()
@@ -135,14 +123,12 @@ def sudoku_demo(s,testi,primeri):
                 risanje(s,narisi,'Rešujemo sudoku:')
                 
             # rešimo sudoku in vrnemo 'Ni rešitve' če ni rešljiv, oz. narišemo rešitev, če je rešljiv
+            t1=time.clock()
             if s==4:
-                t1=time.clock()
                 resitev=dpll.dpll(sudoku4x4.sudoku4(seznam))
-                t2=time.clock()
             if s==9:
-                t1=time.clock()
                 resitev=dpll.dpll(sudoku9x9.sudoku9(seznam))
-                t2=time.clock() 
+            t2=time.clock() 
             print('Tvoj sudoku sem reševal {0} sekund.'.format(t2-t1))
             if resitev[0]=='Ni rešitve':
                 print ('Ta sudoku ni rešljiv.')

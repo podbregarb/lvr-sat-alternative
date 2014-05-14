@@ -38,11 +38,10 @@ def barvanje():
 
 
 
-# sudoku 4x4
+############        SUDOKU        ############
 def sudoku4x4():
     sudoku_demo.sudoku_demo(4,sudoku_demo.testi,sudoku_demo.primeri)
-    
-            
+      
 def sudoku9x9():
     sudoku_demo.sudoku_demo(9,sudoku_demo.TEsti,sudoku_demo.PRimeri)
     
