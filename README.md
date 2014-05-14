@@ -59,6 +59,18 @@ Ukaz **_test_dpll(t)_** izpiše t testnih primerov, s katerimi smo preverili delo
 (zadnji za t=8) testira delovanje funkcije, ki na koncu zaène preverjati vse možnosti (s èistimi pojavitvami in stavki dolžine <=1 se formula še ni rešila). Najveèji t je 14. 
 Testi po t=8 so zraven le ker smo jih uporabljali za testiranje še preden smo imeli sprogramirano funkcijo *vse_moznosti*, niso pa pomembni.
 
+Ukaz **_barvanje()_** rešuje in izpiše 9 vnaprej podanih primerov grafov za razlièno število barv (od 1 do tam kjer postane obarljiv +1). 
+Primer0 je ena toèka. Primer1 je graf na dveh toèkah z eno povezavo. Primer2 je veriga šestih toèk. Primer3 je kvadrat. Primer4 je poln graf na štirih toèkah.
+Linki za ostale grafe: [Primer5](http://www.math.hmc.edu/~kindred/archive/spring11/math55/graphics/icosahedron-coloring.png), 
+[Primer6](http://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Petersen_graph_3-coloring.svg/480px-Petersen_graph_3-coloring.svg.png), 
+[Primer7](http://felix.abecassis.me/wp-content/uploads/2012/11/hexa.png), 
+[Primer8](http://www.dharwadker.org/vertex_coloring/fig5a.jpg), 
+[Primer9](http://www.dharwadker.org/vertex_coloring/fig9a.jpg).
+
+Z ukazom **_barval_bi_sam(V,E,k)_** lahko podamo tudi svoj graf. V je število vozlišè, E je seznam povezav oblike [(e1,e2),(e3,e4),...], k pa število barv s katerimi 
+želimo pobarvati vozlišèa grafa. Ukaz **_barval_bi_sam(V,E,k,1)_** graf tudi nariše. Ker nam to ni ravno najlepše uspelo, enke na koncu ne priporoèamo, oz. jo iz lepotnih
+razlogov odsvetujemo.
+
 Ukaz **_sudoku4x4()_** rešuje sudoku velikosti 4x4. Program nas sam vodi skozi cel proces. Ves èas nas sprašuje, èe želimo sami vpisati sudoku.  
 Èe odgovorimo 'n' (ne), potem program reši sudoku iz tekstovne datoteke *Implementacija/sudoku4.txt* (naš sudoku lahko podamo tudi tam).  
 Èe je naš odgovor 'y' (da), potem imamo tri možnosti:

@@ -129,14 +129,15 @@ def sudoku_demo(s,testi,primeri):
             if s==9:
                 resitev=dpll.dpll(sudoku9x9.sudoku9(seznam))
             t2=time.clock() 
-            print('Tvoj sudoku sem reševal {0} sekund.'.format(t2-t1))
+
             if resitev[0]=='Ni rešitve':
-                print ('Ta sudoku ni rešljiv.')
+                print ('Ta sudoku ni rešljiv. \n')
             
             else:
                 for i in resitev[1].copy():
                     if resitev[1][i]==False:
                         del resitev[1][i]
+                print('Tvoj sudoku sem reševal {0} sekund. \n'.format(t2-t1))
                 risanje(s,resitev[1],'Rešen sudoku:')
             
         else:
