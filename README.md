@@ -26,6 +26,8 @@ Program *primeri.py* izpiše primere uporabe cnf in nnf oblike ter primer izpisa 
 
 V programu *barvanje_grafov.py* je sprogramirana prevedba problema barvanja vozlišè grafa s k barvami v SAT obliko.
 
+Program *barvanje_grafov_demo.py* je namenjen predstavitvi primerov barvanja grafov. Ta program uporablja *demo.py*.
+
 V programu *sudoku9x9.py* je sprogramirana prevedba 9x9 sudokuja, ki pa je dpll ne reši, ker je formula predolga 
 (že samo printanje formule primera na koncu je èasovno zahtevno).
 
