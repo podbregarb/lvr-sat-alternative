@@ -4,7 +4,7 @@
 from . import bool
 from . import cnf
 
-def primer():
+def primeri():
     # Formula: x /\ not (not y \/ x) /\ z
     formula1 = bool.And([bool.Atom("x"), bool.Not(bool.Or([bool.Not(bool.Atom("y")), bool.Atom("x")])), bool.Atom("z")])
     print('Primer izpisa formule: x /\ not (not y \/ x) /\ z \n', formula1)
@@ -29,11 +29,11 @@ def primer():
                    bool.And([bool.Atom("x"), bool.Atom("y")]),
                    bool.And([bool.Atom("u"), bool.Atom("v")])])
     cnf3 = formula3.cnf()
-    print('Formulo \n', formula3, '\n postavimo v cnf obliko: \n', formula3, '\n')
+    print('Formulo \n', formula3, '\n', 'postavimo v cnf obliko: \n', formula3, '\n')
 
     formula4 = bool.Not(bool.And([bool.Not(bool.And([bool.Atom("a"), bool.Not(bool.Atom("b"))])),
                         bool.And([bool.Atom("x"), bool.Atom("y")]),
                         bool.And([bool.Atom("u"), bool.Atom("v")])]))
     cnf4 = formula4.cnf()
-    print('Formulo \n', formula4, '\n postavimo v cnf obliko: \n', formula4, '\n')
+    print('Formulo \n', formula4, '\n', 'postavimo v cnf obliko: \n', formula4, '\n')
 

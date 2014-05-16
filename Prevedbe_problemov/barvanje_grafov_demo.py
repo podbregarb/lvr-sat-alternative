@@ -8,6 +8,7 @@ from . import barvanje_grafov
 import copy
 from tkinter import *
 import time
+from random import *
 
 
 # uporaba dpll na barvanju_grafov
@@ -17,7 +18,7 @@ pr1=(2,[(1,2)],3) # graf na dveh točkah
 pr2=(6,[(1,2),(2,3),(3,4),(4,5),(5,6)],3) # veriga šestih točk
 pr3=(4,[(1,2),(2,3),(3,4),(4,1)],3) # kvadrat
 pr4=(4,[(1,2),(2,3),(3,4),(4,1),(1,3),(2,4)],5) # poln graf na 4 točkah
-pr5=(12,[(1,3),(1,4),(1,10),(1,11),(1,2),(2,3),(2,6),(2,11),(2,12),(3,4),(3,5),(3,6),(4,5),(4,7),(4,10),(5,6),(5,7),(5,8),(6,8),(6,12),(7,8),(7,9),(7,10),(8,9),(8,12),(9,10),(9,11),(9,12),(11,10),(11,12)],4)
+pr5=(12,[(1,3),(1,4),(1,10),(1,11),(1,2),(2,3),(2,6),(2,11),(2,12),(3,4),(3,5),(3,6),(4,5),(4,7),(4,10),(5,6),(5,7),(5,8),(6,8),(6,12),(7,8),(7,9),(7,10),(8,9),(8,12),(9,10),(9,11),(9,12),(11,10),(11,12)],5)
 pr6=(10,[(1,5),(1,2),(1,3),(2,4),(2,9),(3,7),(3,8),(5,6),(5,10),(4,6),(4,8),(6,7),(7,9),(8,10),(9,10)],4) #Petersenov graf (ni 2, je 3-obarljiv)
 pr7=(6,[(1,2),(1,3),(1,4),(1,6),(2,3),(2,6),(2,5),(3,5),(3,4),(4,6),(4,5),(5,6)],4) #(ni 2, je 3-obarljiv)
 pr8=(8,[(1,2),(2,3),(3,4),(4,5),(5,6),(6,7),(7,1),(8,1),(8,2),(8,3),(8,4),(8,5),(8,6),(8,7)],5) # je 4-obarljiv
@@ -25,7 +26,7 @@ pr9=(20,[(1,2),(2,3),(3,4),(4,5),(5,1),(5,14),(1,6),(2,8),(3,10),(4,12),(14,15),
 pr=[pr0,pr1,pr2,pr3,pr4,pr5,pr6,pr7,pr8,pr9]
 
 
-def bedno_barvanje(V,E,k,risanje=0):
+def bedno_barvanje(V,E,k,risi=0):
     
     # risanje
     def risanje(resitev,V,E,k):
@@ -83,11 +84,12 @@ def bedno_barvanje(V,E,k,risanje=0):
         for i in izpis[:]:
             if i==[]: izpis.remove(i)
         for i in range(len(izpis)):
-            print('  Vozlišča {0} so pobarvana s/z {1}. barvo.'.format(izpis[i],i+1))
-        print('  Tvoj graf sem barval {0} sekund. \n'.format(t2-t1))
-        
-        if risanje==1:
-            risanje(resitev[1],V,E,k)
+            print ('  Vozlišča {0} so pobarvana s/z {1}. barvo.'.format(izpis[i],i+1))
+
+        if risi==1:
+            risanje(resitev[1],V,E,k)             
+        print ('  Tvoj graf sem barval {0} sekund. \n'.format(t2-t1))
+
         
 def primeri():
     for i in range(len(pr)):

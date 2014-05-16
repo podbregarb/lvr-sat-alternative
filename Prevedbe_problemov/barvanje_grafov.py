@@ -27,9 +27,7 @@ def barvanje_grafov(V,E,k):
     t=[]
     for i in E:
         for j in range(1,k+1):
-            # t1=bool.Not(bool.And([bool.Atom((i[0],j)),bool.Atom((i[1],j))]))
             t.append(bool.Not(bool.And([bool.Atom((i[0],j)),bool.Atom((i[1],j))])))
-        #t.append(t1)
         
     return bool.And(r+s+t)
                 

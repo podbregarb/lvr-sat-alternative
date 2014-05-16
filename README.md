@@ -4,9 +4,10 @@
 
 V mapi **Implementacija** so programi *bool.py*, *cnf.py* in *primeri.py*. 
 
-V mapi **Prevedbe problemov na SAT - primeri** so programi *barvanje_grafov.py*, *sudoku9x9.py* in *sudoku4x4.py* ter tekstovna datoteka *sudoku4.txt*.
+V mapi **Prevedbe_problemov** so programi *barvanje_grafov.py*, *barvanje_grafov_demo.py*, *sudoku9x9.py*, *sudoku4x4.py*, *sudoku_demo.py* ter tekstovni datoteki 
+*sudoku4.txt* in *sudoku9.txt*.
 
-V mapi **Dpll** sta programa *dpll.py* in *dpll_primeri.py*.
+V mapi **Dpll** sta programa *dpll.py* in *dpll_testi.py*.
 
 Program **demo.py** je glavni program, ki ga zaženemo.
 
@@ -19,17 +20,16 @@ V programu *bool.py* implementiramo razrede za predstavitev formul. Hkrati podam
 
 V programu *cnf.py* podamo pravila za izpis formule v cnf obliki.
 
-Program *primeri.py* izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
+Program *primeri.py* vsebuje primere uporabe cnf in nnf oblike ter primer izpisa formule.
 
 
-### Prevedbe problemov na SAT - primeri
+### Prevedbe_problemov
 
 V programu *barvanje_grafov.py* je sprogramirana prevedba problema barvanja vozlišè grafa s k barvami v SAT obliko.
 
 Program *barvanje_grafov_demo.py* je namenjen predstavitvi primerov barvanja grafov. Ta program uporablja *demo.py*.
 
-V programu *sudoku9x9.py* je sprogramirana prevedba 9x9 sudokuja, ki pa je dpll ne reši, ker je formula predolga 
-(že samo printanje formule primera na koncu je èasovno zahtevno).
+V programu *sudoku9x9.py* je sprogramirana prevedba 9x9 sudokuja v SAT obliko.
 
 V tekstovni datoteki *sudoku9.txt* je podan primer 9x9 sudokuja, ki ga program *demo.py* reši preko programa *dpll.py* in preko programa 
 *sudoku9x9.py*, ki sestavi izjavno formulo.
@@ -39,7 +39,8 @@ V programu *sudoku4x4.py* je sprogramirana prevedba 4x4 sudokuja v SAT obliko.
 V tekstovni datoteki *sudoku4.txt* je podan primer 4x4 sudokuja, ki ga program *demo.py* reši preko programa *dpll.py* in preko programa 
 *sudoku4x4.py*, ki sestavi izjavno formulo.
 
-Program *sudoku_demo.py* je namenjen predstavitvi testov in primerov za sudoku velikosti 4x4 in 9x9. Ta program uporablja *demo.py* za prikaz nerešenih in rešenih sudokujev.
+Program *sudoku_demo.py* je namenjen predstavitvi testov in primerov za sudoku velikosti 4x4 in 9x9. Ta program uporablja *demo.py* za prikaz nerešenih in 
+rešenih sudokujev.
 
 
 ### Dpll
@@ -57,8 +58,8 @@ Zaženemo program **demo.py**. V Python Shell-u zaènemo pisati ukaze.
 
 Ukaz **_osnove()_** izpiše primere uporabe cnf in nnf oblike ter primer izpisa formule.
 
-Ukaz **_test_dpll(t)_** izpiše t testnih primerov, s katerimi smo preverili delovanje našega SAT solverja. Do t=5 so osnovni testi (prazen And, Or in podobni). 'test7' 
-(zadnji za t=8) testira delovanje funkcije, ki na koncu zaène preverjati vse možnosti (s èistimi pojavitvami in stavki dolžine <=1 se formula še ni rešila). Najveèji t je 14. 
+Ukaz **_test_dpll(t)_** izpiše t testnih primerov, s katerimi smo preverili delovanje našega SAT solverja. Najveèji t je 14. Do t=5 so osnovni testi (prazen And, Or in podobni). 'test7' 
+(zadnji za t=8) testira delovanje funkcije, ki na koncu zaène preverjati vse možnosti (s èistimi pojavitvami in stavki dolžine <=1 se formula še ni rešila). 
 Testi po t=8 so zraven le ker smo jih uporabljali za testiranje še preden smo imeli sprogramirano funkcijo *vse_moznosti*, niso pa pomembni.
 
 Ukaz **_barvanje()_** rešuje in izpiše 9 vnaprej podanih primerov grafov za razlièno število barv (od 1 do tam kjer postane obarljiv +1). 

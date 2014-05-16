@@ -1,7 +1,7 @@
 # uvozimo vse potrebne programe
 import Implementacija.cnf as cnf
 import Implementacija.bool as bool
-import Implementacija.primer as primer
+import Implementacija.primeri as primeri
 
 import Dpll.dpll as dpll
 import Dpll.dpll_testi as dpll_testi
@@ -16,7 +16,7 @@ from random import *
 
 # zažene funkcijo primer iz programa primer.py (iz mape Implementacija)
 def osnove():
-    primer.primer()
+    primeri.primeri()
 
 # za testiranje dpll
 def test_dpll(t):
@@ -27,11 +27,10 @@ def test_dpll(t):
 def barvanje():
     return barvanje_grafov_demo.primeri()
 
-def barval_bi_sam(V,E,k):
-    return barvanje_grafov_demo.bedno_barvanje(V,E,k)
+def barval_bi_sam(V,E,k,risi):
+    return barvanje_grafov_demo.bedno_barvanje(V,E,k,risi)
 
     
-
 ###   SUDOKU   ###
 def sudoku4x4():
     sudoku_demo.sudoku_demo(4,sudoku_demo.testi,sudoku_demo.primeri)
