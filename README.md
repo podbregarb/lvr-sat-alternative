@@ -9,7 +9,7 @@ V mapi **Prevedbe_problemov** so programi *barvanje_grafov.py*, *barvanje_grafov
 
 V mapi **Dpll** sta programa *dpll.py* in *dpll_testi.py*.
 
-Program **demo.py** je glavni program, ki ga zaûenemo.
+Program **demo.py** je glavni program, ki ga za≈æenemo.
 
 
 ##  Opis algoritmov in datotek 
@@ -25,71 +25,71 @@ Program *primeri.py* vsebuje primere uporabe cnf in nnf oblike ter primer izpisa
 
 ### Prevedbe_problemov
 
-V programu *barvanje_grafov.py* je sprogramirana prevedba problema barvanja vozliöË grafa s k barvami v SAT obliko.
+V programu *barvanje_grafov.py* je sprogramirana prevedba problema barvanja vozli≈°ƒç grafa s k barvami v SAT obliko.
 
 Program *barvanje_grafov_demo.py* je namenjen predstavitvi primerov barvanja grafov. Ta program uporablja *demo.py*.
 
 V programu *sudoku9x9.py* je sprogramirana prevedba 9x9 sudokuja v SAT obliko.
 
-V tekstovni datoteki *sudoku9.txt* je podan primer 9x9 sudokuja, ki ga program *demo.py* reöi preko programa *dpll.py* in preko programa 
+V tekstovni datoteki *sudoku9.txt* je podan primer 9x9 sudokuja, ki ga program *demo.py* re≈°i preko programa *dpll.py* in preko programa 
 *sudoku9x9.py*, ki sestavi izjavno formulo.
 
 V programu *sudoku4x4.py* je sprogramirana prevedba 4x4 sudokuja v SAT obliko.
 
-V tekstovni datoteki *sudoku4.txt* je podan primer 4x4 sudokuja, ki ga program *demo.py* reöi preko programa *dpll.py* in preko programa 
+V tekstovni datoteki *sudoku4.txt* je podan primer 4x4 sudokuja, ki ga program *demo.py* re≈°i preko programa *dpll.py* in preko programa 
 *sudoku4x4.py*, ki sestavi izjavno formulo.
 
-Program *sudoku_demo.py* je namenjen predstavitvi testov in primerov za sudoku velikosti 4x4 in 9x9. Ta program uporablja *demo.py* za prikaz nereöenih in 
-reöenih sudokujev.
+Program *sudoku_demo.py* je namenjen predstavitvi testov in primerov za sudoku velikosti 4x4 in 9x9. Ta program uporablja *demo.py* za prikaz nere≈°enih in 
+re≈°enih sudokujev.
 
 
 ### Dpll
 
-V programu *dpll.py* je sprogramiran SAT solver. Le-ta pove, Ëe je dana izjavna formula izpolnljiva. V primeru da je, vrne tekst 'Formula je izpolnljiva' 
-in seznam spremenljivk s pripadajoËimi vrednostmi, za katere je formula izpolnljiva. V primeru da kakim spremenljivkam ne pripiöe vrednosti, lahko le-te 
-zavzamejo poljubno vrednost. V primeru ko ni reöitve, vrne tekst 'Ni reöitve' in prazen seznam.
+V programu *dpll.py* je sprogramiran SAT solver. Le-ta pove, ƒçe je dana izjavna formula izpolnljiva. V primeru da je, vrne tekst 'Formula je izpolnljiva' 
+in seznam spremenljivk s pripadajoƒçimi vrednostmi, za katere je formula izpolnljiva. V primeru da kakim spremenljivkam ne pripi≈°e vrednosti, lahko le-te 
+zavzamejo poljubno vrednost. V primeru ko ni re≈°itve, vrne tekst 'Ni re≈°itve' in prazen seznam.
 
-Program *dpll_testi.py* vsebuje testne primere, s katerimi smo preverili delovanje naöega SAT solverja.
+Program *dpll_testi.py* vsebuje testne primere, s katerimi smo preverili delovanje na≈°ega SAT solverja.
 
 
 ## Uporaba 
 
-Zaûenemo program **demo.py**. V Python Shell-u zaËnemo pisati ukaze.
+Za≈æenemo program **demo.py**. V Python Shell-u zaƒçnemo pisati ukaze.
 
-Ukaz **_osnove()_** izpiöe primere uporabe cnf in nnf oblike ter primer izpisa formule.
+Ukaz **_osnove()_** izpi≈°e primere uporabe cnf in nnf oblike ter primer izpisa formule.
 
-Ukaz **_test_dpll(t)_** izpiöe t testnih primerov, s katerimi smo preverili delovanje naöega SAT solverja. NajveËji t je 14. Do t=5 so osnovni testi (prazen And, Or in podobni). 'test7' 
-(zadnji za t=8) testira delovanje funkcije, ki na koncu zaËne preverjati vse moûnosti (s Ëistimi pojavitvami in stavki dolûine <=1 se formula öe ni reöila). 
-Testi po t=8 so zraven le ker smo jih uporabljali za testiranje öe preden smo imeli sprogramirano funkcijo *vse_moznosti*, niso pa pomembni.
+Ukaz **_test_dpll(t)_** izpi≈°e t testnih primerov, s katerimi smo preverili delovanje na≈°ega SAT solverja. Najveƒçji t je 14. Do t=5 so osnovni testi (prazen And, Or in podobni). 'test7' 
+(zadnji za t=8) testira delovanje funkcije, ki na koncu zaƒçne preverjati vse mo≈ænosti (s ƒçistimi pojavitvami in stavki dol≈æine <=1 se formula ≈°e ni re≈°ila). 
+Testi po t=8 so zraven le ker smo jih uporabljali za testiranje ≈°e preden smo imeli sprogramirano funkcijo *vstavljanje*, niso pa pomembni.
 
-Ukaz **_barvanje()_** reöuje in izpiöe 9 vnaprej podanih primerov grafov za razliËno ötevilo barv (od 1 do tam kjer postane obarljiv +1). 
-Primer0 je ena toËka. Primer1 je graf na dveh toËkah z eno povezavo. Primer2 je veriga öestih toËk. Primer3 je kvadrat. Primer4 je poln graf na ötirih toËkah.
+Ukaz **_barvanje()_** re≈°uje in izpi≈°e 9 vnaprej podanih primerov grafov za razliƒçno ≈°tevilo barv (od 1 do tam kjer postane obarljiv +1). 
+Primer0 je ena toƒçka. Primer1 je graf na dveh toƒçkah z eno povezavo. Primer2 je veriga ≈°estih toƒçk. Primer3 je kvadrat. Primer4 je poln graf na ≈°tirih toƒçkah.
 Linki za ostale grafe: [Primer5](http://www.math.hmc.edu/~kindred/archive/spring11/math55/graphics/icosahedron-coloring.png), 
 [Primer6](http://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Petersen_graph_3-coloring.svg/480px-Petersen_graph_3-coloring.svg.png), 
 [Primer7](http://felix.abecassis.me/wp-content/uploads/2012/11/hexa.png), 
 [Primer8](http://www.dharwadker.org/vertex_coloring/fig5a.jpg), 
 [Primer9](http://www.dharwadker.org/vertex_coloring/fig9a.jpg).
 
-Z ukazom **_barval_bi_sam(V,E,k)_** lahko podamo tudi svoj graf. V je ötevilo vozliöË, E je seznam povezav oblike [(e1,e2),(e3,e4),...], k pa ötevilo barv s katerimi 
-ûelimo pobarvati vozliöËa grafa. Ukaz **_barval_bi_sam(V,E,k,1)_** graf tudi nariöe. Ker nam to ni ravno najlepöe uspelo, enke na koncu ne priporoËamo, oz. jo iz lepotnih
+Z ukazom **_barval_bi_sam(V,E,k)_** lahko podamo tudi svoj graf. V je ≈°tevilo vozli≈°ƒç, E je seznam povezav oblike [(e1,e2),(e3,e4),...], k pa ≈°tevilo barv s katerimi 
+≈æelimo pobarvati vozli≈°ƒça grafa. Ukaz **_barval_bi_sam(V,E,k,1)_** graf tudi nari≈°e. Ker nam to ni ravno najlep≈°e uspelo, enke na koncu ne priporoƒçamo, oz. jo iz lepotnih
 razlogov odsvetujemo.
 
-Ukaz **_sudoku4x4()_** reöuje sudoku velikosti 4x4. Program nas sam vodi skozi cel proces. Ves Ëas nas spraöuje, Ëe ûelimo sami vpisati sudoku.  
-»e odgovorimo 'n' (ne), potem program reöi sudoku iz tekstovne datoteke *Implementacija/sudoku4.txt* (naö sudoku lahko podamo tudi tam).  
-»e je naö odgovor 'y' (da), potem imamo tri moûnosti:
-- Vpiöemo svoj sudoku v formatu, ki ga zahteva program.
-- Vpiöemo tekst 'test0', 'test1', 'test2', 'test3' ali 'test4'. To so testni sudokuji. Program jih pokaûe preden jih zaËne reöevati in nam nato prikaûe öe reöen sudoku.
-'test0' je prazen sudoku. Program ga vseeno reöi in prikaûe neko reöitev. 'test1', 'test2' in 'test3' so nereöljivi sudokuji. 'test4' je poln sudoku. 
-- Vpiöemo tekst 'primer0', 'primer1', 'primer2' ali 'primer3'. Primeri so razvröËeni po teûavnosti od najlaûjega ('primer0') do teûjega ('primer3').
+Ukaz **_sudoku4x4()_** re≈°uje sudoku velikosti 4x4. Program nas sam vodi skozi cel proces. Ves ƒças nas spra≈°uje, ƒçe ≈æelimo sami vpisati sudoku.  
+ƒåe odgovorimo 'n' (ne), potem program re≈°i sudoku iz tekstovne datoteke *Implementacija/sudoku4.txt* (na≈° sudoku lahko podamo tudi tam).  
+ƒåe je na≈° odgovor 'y' (da), potem imamo tri mo≈ænosti:
+- Vpi≈°emo svoj sudoku v formatu, ki ga zahteva program.
+- Vpi≈°emo tekst 'test0', 'test1', 'test2', 'test3' ali 'test4'. To so testni sudokuji. Program jih poka≈æe preden jih zaƒçne re≈°evati in nam nato prika≈æe ≈°e re≈°en sudoku.
+'test0' je prazen sudoku. Program ga vseeno re≈°i in prika≈æe neko re≈°itev. 'test1', 'test2' in 'test3' so nere≈°ljivi sudokuji. 'test4' je poln sudoku. 
+- Vpi≈°emo tekst 'primer0', 'primer1', 'primer2' ali 'primer3'. Primeri so razvr≈°ƒçeni po te≈æavnosti od najla≈æjega ('primer0') do te≈æjega ('primer3').
 
-Program za vsak reöen sudoku izpiöe tudi Ëas reöevanja.  
-»e je naö odgovor karkoli drugega, se program konËa.
+Program za vsak re≈°en sudoku izpi≈°e tudi ƒças re≈°evanja.  
+ƒåe je na≈° odgovor karkoli drugega, se program konƒça.
 
-Ukaz **_sudoku9x9()_** deluje enako kot *sudoku4x4()*, le da imamo tu 4 primere. Tudi zadnjega, tj. 'primer4' ("World's hardest sudoku" :P) izraËuna, le Ëakati je treba 
+Ukaz **_sudoku9x9()_** deluje enako kot *sudoku4x4()*, le da imamo tu 4 primere. Tudi zadnjega, tj. 'primer4' ("World's hardest sudoku" :P) izraƒçuna, le ƒçakati je treba 
 (pri meni je trajalo pol minute).
 
 
 ## Pomembna opomba
 
-Razlog, da je veËino commitov narejenih iz mojega uporabniökega imena (podbregarb) je v tem, da smo se veËinoma dobili vsi skupaj pri nekomu doma in delali projekt na istem 
-raËunalniku. Vsak od nas je v projekt vloûil veliko Ëasa in vsi smo se z njim veliko nauËili.
+Razlog, da je veƒçino commitov narejenih iz mojega uporabni≈°kega imena (podbregarb) je v tem, da smo se veƒçinoma dobili vsi skupaj pri nekomu doma in delali projekt na istem 
+raƒçunalniku. Vsak od nas je v projekt vlo≈æil veliko ƒçasa in vsi smo se z njim veliko nauƒçili.
